@@ -1,0 +1,123 @@
+:root {
+  --bg: #0a0a0d;
+  --surface: #141418;
+  --text: #eee;
+  --dim: #9a9aa5;
+  --accent: #e5342c;
+  --line: #26262e;
+  --help: #f6f4f1;
+  --helpText: #000000;
+}
+html[data-theme="light"] {
+  --bg: #f6f4f1;
+  --surface: #ffffff;
+  --text: #1c1c1f;
+  --dim: #71717a;
+  --accent: #d92c24;
+  --line: #e3e0da;
+  --help: #0a0a0d;
+  --helpText: #eee;
+}
+a {
+  color: var(--text);
+  text-decoration: none;
+}
+body {
+  background: var(--bg);
+  color: var(--text);
+  transition: background 0.25s, color 0.25s;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Vazirmatn", Tahoma, Segoe UI, Geneva, Verdana, sans-serif;
+}
+.hed {
+  border-radius: 30px;
+}
+/* Help--website */
+.help--website {
+  width: 30%;
+  background-color: var(--help);
+  height: 50px;
+  position: absolute;
+  margin: 20px;
+  color: var(--helpText);
+  direction: rtl;
+  font-size: 15px;
+  padding: 10px;
+  border-radius: 10px;
+  border: 2px solid var(--accent);
+  top: -200px;
+  right: 0;
+  transition: all ease 1s;
+}
+.avtive--help {
+  transition: all ease 1s;
+  top: 0;
+  right: 0;
+}
+header {
+  height: 230px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+.name--visite {
+  margin-top: 45px;
+  font-size: 2.9em;
+  color: var(--text);
+  letter-spacing: 5px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 700;
+}
+.name--visite span {
+  color: var(--accent);
+  font-size: 1.1em;
+}
+.form--header {
+  margin: 20px;
+  width: 80%;
+  position: relative;
+}
+.form--header input {
+  padding: 15px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: rgba(19, 19, 19, 0.79);
+  border-style: double;
+  direction: rtl;
+  color: white;
+  overflow: hidden;
+  border: 1px solid rgb(44, 44, 44);
+  color: white;
+  font-size: 1.2em;
+}
+.form--header input::placeholder {
+  padding: 5px;
+}
+.form--header button {
+  font-size: 18px;
+  color: #ffffff;
+  position: absolute;
+  left: 0;
+  top: 0px;
+  width: 45px;
+  height: 45px;
+  line-height: 5px;
+  text-align: center;
+  border: 0;
+  cursor: pointer;
+  background-color: red;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 10px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: none;
+}
