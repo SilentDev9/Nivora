@@ -1,4 +1,6 @@
-* , *::before, *::after {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -30,7 +32,9 @@ html[data-theme="light"] {
   --helpText: #eee;
 }
 
-html, body, #app {
+html,
+body,
+#app {
   width: 100%;
   min-height: 100%;
 }
@@ -45,6 +49,11 @@ body {
   font-size: 16px;
   line-height: 1.6;
   overflow-x: hidden;
+
+  background: var(--bg);
+  color: var(--text);
+
+  transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 a {
@@ -167,4 +176,128 @@ li {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
   }
+}
+
+/* Them */
+
+.theme-toggle {
+  position: relative;
+  width: 64px;
+  height: 34px;
+
+  padding: 3px;
+  border: 1px solid var(--line);
+  border-radius: 50px;
+
+  background: var(--surface);
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  overflow: hidden;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+
+  transition: background 0.35s ease, border-color 0.35s ease,
+    box-shadow 0.35s ease, transform 0.2s ease;
+}
+
+.theme-toggle::before {
+  content: "";
+
+  position: absolute;
+  top: 3px;
+  left: 3px;
+
+  width: 26px;
+  height: 26px;
+
+  border-radius: 50%;
+
+  background: #24242c;
+
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.35);
+
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1),
+    background 0.35s ease, box-shadow 0.35s ease;
+}
+
+.theme-toggle span {
+  position: relative;
+  z-index: 2;
+
+  width: 26px;
+  height: 26px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 16px;
+  line-height: 1;
+
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+}
+
+.theme-toggle .moon {
+  color: var(--text);
+  opacity: 1;
+  transform: scale(1);
+}
+
+.theme-toggle .sun {
+  color: #f59e0b;
+  opacity: 0.45;
+  transform: scale(0.8);
+}
+
+.theme-toggle.light {
+  background: #f1f1ed;
+  border-color: #deded8;
+
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.7);
+}
+
+.theme-toggle.light::before {
+  transform: translateX(31.5px);
+
+  background: #ffffff;
+
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.12);
+}
+
+.theme-toggle.light .moon {
+  opacity: 0.4;
+  transform: scale(0.8);
+}
+
+.theme-toggle.light .sun {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.theme-toggle:active {
+  transform: scale(0.94);
+}
+
+.theme-toggle:active::before {
+  transform: scale(0.9);
+}
+
+.theme-toggle.light:active::before {
+  transform: translateX(30px) scale(0.9);
+}
+
+.theme-toggle:hover {
+  border-color: var(--accent);
+
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.18);
+}
+
+.theme-toggle.light:hover {
+  box-shadow: 0 5px 16px rgba(0, 0, 0, 0.1);
 }

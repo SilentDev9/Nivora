@@ -24,7 +24,5 @@ export default {
 </script>
 
 <style scoped>
-.countiner {
-  margin-top: 18px;
-}
+
 </style>

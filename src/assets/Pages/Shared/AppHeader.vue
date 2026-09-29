@@ -31,10 +31,11 @@ header {
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  margin-bottom: 300px;
 }
 .name--visite {
-  margin: 0 0 28px;
-  font-size: clamp(2.2rem, 6vw, 3.6rem);
+  padding: 50px;
+  font-size: clamp(3rem, 7vw, 3.6rem);
   color: var(--text);
   letter-spacing: 5px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -51,14 +52,15 @@ header {
 }
 .form--header input {
   display: block;
-  width: 100%;
+width: 100%;
+
   min-height: 58px;
   padding: 12px 72px 12px 18px;
   border-radius: 12px;
-  background-color: rgba(19, 19, 19, 0.79);
+  background-color: var(--surface);
   direction: rtl;
-  color: white;
-  border: 1px solid rgb(44, 44, 44);
+  color: var(--text);
+  border: 2px solid var(--line);
   outline: none;
   font-size: clamp(1rem, 2vw, 1.2rem);
 }
@@ -67,7 +69,7 @@ header {
 }
 .form--header button {
   font-size: 22px;
-  color: #ffffff;
+  color: var(--text);
   position: absolute;
   left: 6px;
   top: 6px;

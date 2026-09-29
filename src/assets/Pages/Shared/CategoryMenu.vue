@@ -3,7 +3,14 @@
     <div class="cuntainer">
       <div>
         <router-link to="/Login"><i class="fa fa-user-circle"></i></router-link>
-        <a><i class="fa fa-download"></i></a>
+
+        <button
+          class="theme-toggle"
+          :class="{ light: isLight }"
+          @click="toggleTheme"
+        >
+          <span class="moon">☾</span> <span class="sun">☀</span>
+        </button>
       </div>
 
       <div class="category-item">
@@ -49,7 +56,8 @@ export default {
     return {
       isMenuOpen: false,
       isGroupingOpne: false,
-      clickMenu: false
+      clickMenu: false,
+      isLight: false
     };
   },
   methods: {
@@ -59,6 +67,14 @@ export default {
     OpenGrouping() {
       this.isGroupingOpne = !this.isGroupingOpne;
       this.clickMenu = !this.clickMenu;
+    },
+    toggleTheme() {
+      this.isLight = !this.isLight;
+
+      document.documentElement.setAttribute(
+        "data-theme",
+        this.isLight ? "light" : "dark"
+      );
     }
   }
 };
@@ -92,8 +108,9 @@ export default {
 .cuntainer i {
   position: static;
   margin: 0;
-  font-size: 1.35rem;
+  font-size: 2rem;
   cursor: pointer;
+  padding: 10px;
 }
 .menuMobile {
   position: fixed;
@@ -109,7 +126,7 @@ export default {
   direction: rtl;
   font-size: 1.05rem;
   color: var(--text);
-  box-shadow: -10px 0 35px rgba(0,0,0,.2);
+  box-shadow: -10px 0 35px rgba(0, 0, 0, 0.2);
 }
 .menu--active {
   right: 0;
