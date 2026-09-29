@@ -9,7 +9,8 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
   routes: Routes,
-  mode: "history"
+  mode: "hash",
+  base: "/Nivora/"
 });
 
 new Vue({
