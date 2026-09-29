@@ -158,85 +158,60 @@ export default {
 
 <style scoped>
 .countiner {
-  height: 1000px;
+  min-height: 650px;
+  height: auto;
+  width: min(650px, calc(100% - 32px));
+  margin: 40px auto;
+  padding: 28px;
   background-color: var(--surface);
   border-radius: 20px;
   color: var(--text);
   text-align: center;
   direction: rtl;
   display: flex;
-  flex-wrap: wrap;
-  align-content: flex-start;
+  align-items: flex-start;
   justify-content: center;
-  margin: 100px;
-  border: 5px solid var(--line);
+  border: 2px solid var(--line);
 }
-.countiner h1 {
-  padding: 20px;
-}
-
-form {
-  width: 100%;
-  height: 100px;
-  color: var(--text);
-}
-input[type="email"],
-input[type="password"],
-input[type="text"] {
-  border: 0px;
+.countiner h1 { padding: 10px; font-size: clamp(1.5rem, 5vw, 2.1rem); }
+form { width: 100%; height: auto; color: var(--text); }
+input[type="email"], input[type="password"], input[type="text"] {
+  display: block;
   border: none;
-  border-bottom: 3px solid var(--dim);
-  padding: 3%;
-  width: 70%;
-  margin-top: 2%;
-  position: relative;
+  border-bottom: 2px solid var(--dim);
+  padding: 12px 4px;
+  width: 82%;
+  margin: 12px auto 0;
   color: var(--text);
+  background: transparent;
+  outline: none;
 }
-.lable--email {
+input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focus { border-bottom-color: var(--accent); }
+.lable--email, .lable--password, .lable--username {
   position: absolute;
-  translate: 0px 17px;
+  right: 12%;
+  transform: translateY(22px);
+  transition: all ease .3s;
 }
-.lable--password {
-  position: absolute;
-  translate: 0px 17px;
-}
-input::placeholder {
-  color: var(--text);
-}
-input:focus {
-  border: none;
-  border-bottom: 5px solid var(--dim);
-}
-input {
-  all: unset;
-}
-.lableActive {
-  transition: all ease 0.5s;
-  transform: translateY(-28px);
-}
-.div--password {
-  position: relative;
-}
-i {
-  position: absolute;
-  top: 18px;
-  left: 50px;
-}
+.lableActive { transform: translateY(-4px); color: var(--accent); }
+.div--password { position: relative; }
+.div--password > i { position: absolute; top: 14px; left: 8%; color: var(--dim); cursor: pointer; }
 button[type="submit"] {
-  width: 50%;
-  padding: 5px;
-  margin: 35px;
+  width: min(280px, 80%);
+  padding: 10px 18px;
+  margin: 28px auto 20px;
+  display: block;
   background-color: var(--accent);
   color: var(--text);
+  border: 0;
+  border-radius: 10px;
 }
-.forget--password {
-  color: var(--text);
-}
-.create--account {
-  color: var(--accent);
-}
-.lable--username {
-  position: absolute;
-  translate: 0px 17px;
+.forget--password { color: var(--text); }
+.create--account { color: var(--accent); }
+@media (max-width: 500px) {
+  .countiner { width: calc(100% - 16px); min-height: 620px; margin: 24px auto; padding: 22px 14px; }
+  input[type="email"], input[type="password"], input[type="text"] { width: 88%; }
+  .lable--email, .lable--password, .lable--username { right: 8%; }
+  .div--password > i { left: 4%; }
 }
 </style>

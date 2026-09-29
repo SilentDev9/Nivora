@@ -25,9 +25,6 @@ export default {
 
 <style scoped>
 .countiner {
-
-  margin: 90% 4% 4% 4%;
-
+  margin-top: 18px;
 }
-
 </style>

@@ -1,7 +1,6 @@
 <template>
   <div>
  <category--menu></category--menu>
-<br>
       <header>
 
         <span class="name--visite"><span>N</span>ivora</span>
@@ -25,23 +24,17 @@ export default {
 </script>
 
 <style scoped>
-
-
-.avtive--help {
-  transition: all ease 1s;
-  top: 0;
-  right: 0;
-}
 header {
-  height: 330px;
+  min-height: 360px;
+  padding: 120px 20px 32px;
   display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
 }
 .name--visite {
-  margin: 400px 45px 45px 45px;
-  font-size: 2.9em;
+  margin: 0 0 28px;
+  font-size: clamp(2.2rem, 6vw, 3.6rem);
   color: var(--text);
   letter-spacing: 5px;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
@@ -52,43 +45,66 @@ header {
   font-size: 1.1em;
 }
 .form--header {
-  margin: 40px;
-  width: 80%;
+  margin: 0;
+  width: min(850px, 100%);
   position: relative;
 }
 .form--header input {
-  padding: 15px;
+  display: block;
   width: 100%;
-  border-radius: 10px;
+  min-height: 58px;
+  padding: 12px 72px 12px 18px;
+  border-radius: 12px;
   background-color: rgba(19, 19, 19, 0.79);
-  border-style: double;
   direction: rtl;
   color: white;
-  overflow: hidden;
   border: 1px solid rgb(44, 44, 44);
-  color: white;
-  font-size: 1.2em;
+  outline: none;
+  font-size: clamp(1rem, 2vw, 1.2rem);
 }
-.form--header input::placeholder {
-  padding: 5px;
+.form--header input:focus {
+  border-color: var(--accent);
 }
 .form--header button {
-  font-size: 28px;
+  font-size: 22px;
   color: #ffffff;
   position: absolute;
-  left: 0;
-  top: 0px;
-  width: 65px;
-  height: 65px;
-  line-height: 5px;
+  left: 6px;
+  top: 6px;
+  width: 46px;
+  height: 46px;
+  line-height: 1;
   text-align: center;
   border: 0;
-  cursor: pointer;
-  background-color: red;
-  padding: 20px;
-  margin: 5px;
-  border-radius: 10px;
+  background-color: var(--accent);
+  padding: 0;
+  margin: 0;
+  border-radius: 9px;
 }
 
+@media (max-width: 700px) {
+  header {
+    min-height: 300px;
+    padding: 105px 14px 24px;
+  }
+
+  .name--visite {
+    margin-bottom: 22px;
+    letter-spacing: 2px;
+  }
+
+  .form--header input {
+    min-height: 52px;
+    padding-right: 14px;
+    padding-left: 60px;
+  }
+
+  .form--header button {
+    width: 42px;
+    height: 42px;
+    top: 5px;
+    left: 5px;
+  }
+}
 </style>
 
