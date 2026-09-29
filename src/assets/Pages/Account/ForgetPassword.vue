@@ -76,6 +76,7 @@ export default {
 </script>
 
 <style>
+
 .countiner--small {
   height: auto;
   min-height: 380px;

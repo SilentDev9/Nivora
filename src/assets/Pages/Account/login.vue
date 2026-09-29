@@ -32,7 +32,9 @@
             v-on:click="activShowPassword"
           ></i>
         </div>
-        <button type="submit" v-on:click="checkingLogin">submit</button>
+        <router-link to="/Dashboard">
+          <button type="submit" v-on:click="checkingLogin">submit</button>
+        </router-link>
         <div>
           <router-link to="/ForgetPasswoed">
             <span class="forget--password"
@@ -49,8 +51,6 @@
 </template>
 
 <script>
-import { RouterView } from "vue-router";
-
 export default {
   data() {
     return {
@@ -79,13 +79,20 @@ export default {
         setTimeout(() => {
           this.showHelpWebsite = !this.showHelpWebsite;
         }, 3000);
-      } else if (this.User.Password == "") {
-        this.dataHelp = " اوه Password رو یادت رفت کامل کنی";
+        return;
+      }
+      if (this.User.Password == "") {
         this.showHelpWebsite = !this.showHelpWebsite;
+        this.dataHelp = " اوه Password رو یادت رفت کامل کنی";
         setTimeout(() => {
           this.showHelpWebsite = !this.showHelpWebsite;
         }, 3000);
+        return;
       }
+      this.$store.commit("User/SET_USER", {
+        Email: this.User.Email
+      });
+
     }
   }
 };
@@ -93,7 +100,7 @@ export default {
 
 <style>
 .countiner {
-  height: 400px;
+  height: 740px;
   background-color: var(--surface);
   border-radius: 20px;
   color: white;
@@ -160,9 +167,10 @@ i {
 button[type="submit"] {
   width: 50%;
   padding: 5px;
-  margin: 35px;
+  margin: 55px;
   background-color: var(--accent);
   color: var(--text);
+  font-size: 1.3em;
 }
 .forget--password {
   color: var(--text);

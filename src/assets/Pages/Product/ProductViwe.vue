@@ -1,11 +1,19 @@
 <template>
   <div class="countiner">
-    <template v-if="product">
+    <div class="img--countiner" v-if="product">
       <img :src="product.image" :alt="product.title" class="main-image" />
       <h1>{{ product.title }}</h1>
-    </template>
 
-    <!-- اگه id توی URL با هیچ محصولی مچ نشد (مثلاً کاربر دستی یه عدد اشتباه توی آدرس نوشت) -->
+      <div class="video--direction">
+        <ul>
+          <li>تایم : </li>
+          <li>امتیاز :</li>
+          <li>بازیگران :</li>
+          <li>توضیحات :</li>
+        </ul>
+      </div>
+    </div>
+
     <div class="not-found" v-else>
       <p>همچین محصولی پیدا نشد</p>
       <router-link to="/">برگرد به صفحه‌ی اصلی</router-link>
@@ -20,8 +28,6 @@ export default {
   computed: {
     ...mapGetters("Product", ["productById"]),
 
-    // this.$route.params.id همون بخش از آدرسه که توی Routes.js با ":id" مشخص کردیم؛
-    // یعنی برای /ProductViwe/3 مقدارش میشه "3"
     product() {
       return this.productById(this.$route.params.id);
     }
@@ -31,23 +37,34 @@ export default {
 
 <style scoped>
 .countiner {
-  margin: 4%;
-  padding: 24px;
   background-color: var(--surface);
-  border-radius: 10px;
+  border-radius: 20px;
+  color: var(--text);
   text-align: center;
+  direction: rtl;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  justify-content: center;
+  margin: 70px;
+  border: 5px solid var(--line);
+  padding: 10px;
 }
-.main-image {
+.countiner h1 {
+  padding: 20px;
+}
+.img--countiner {
   width: 100%;
-  max-width: 420px;
-  border-radius: 10px;
-  border: 1px solid var(--line);
+  height: 700px;
 }
-h1 {
-  margin-top: 18px;
-  font-size: 24px;
+.img--countiner img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
 }
-.not-found {
-  color: var(--dim);
+.video--direction{
+  display: flex;
+  background-color: var(--surface);
+  font-weight: 700;
 }
 </style>

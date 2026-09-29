@@ -2,7 +2,6 @@
   <nav class="category-menu">
     <div class="cuntainer">
       <div>
-
         <router-link to="/Login"><i class="fa fa-user-circle"></i></router-link>
         <a><i class="fa fa-download"></i></a>
       </div>
@@ -43,7 +42,7 @@
 </template>
 
 <script>
-import { RouterLink } from 'vue-router';
+import { RouterLink } from "vue-router";
 
 export default {
   data() {
@@ -72,12 +71,16 @@ export default {
   margin: 0;
   z-index: 100;
   box-shadow: 9px 0px 50px rgba(139, 0, 0, 0.368);
+  position: fixed;
+  top: 0;
+  width: 100%;
 }
 .cuntainer {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px;
+  padding: 30px;
+
 }
 /* button{
   background-color:transparent;
@@ -85,8 +88,8 @@ export default {
   border: none;
 } */
 .cuntainer i {
-  margin: 10px;
-  font-size: 28px;
+  margin: 15px;
+  font-size: 1.7em;
   cursor: pointer;
 }
 .menuMobile {

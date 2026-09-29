@@ -158,7 +158,7 @@ export default {
 
 <style scoped>
 .countiner {
-  height: 500px;
+  height: 1000px;
   background-color: var(--surface);
   border-radius: 20px;
   color: var(--text);

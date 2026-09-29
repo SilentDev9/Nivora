@@ -1,14 +1,13 @@
-// این ماژول لیست محصولات پیشنهادی رو نگه می‌داره.
-// فعلاً دیتا استاتیکه (توی همین فایل)، ولی وقتی بک‌اند (ASP.NET Core) آماده شد،
-// فقط کافیه به‌جای این آرایه‌ی ثابت، یه action با fetch/axios به API واقعی وصل بشه —
-// بقیه‌ی کامپوننت (ProductProposed.vue) دست‌نخورده می‌مونه چون از getter میاد، نه مستقیم از این فایل.
-
 const state = {
   products: [
     {
       id: 1,
       title: "داستان دو شهر",
-      image: require("../../assets/img/Proposed/AtaleOfTwoCites.png")
+      image: require("../../assets/img/Proposed/AtaleOfTwoCites.png"),
+      time: "1:20:56",
+      score: "7.8",
+      cast: "",
+      direction: ""
     },
     {
       id: 2,
@@ -34,13 +33,18 @@ const state = {
       id: 6,
       title: "آلفا",
       image: require("../../assets/img/Proposed/ALPHA.png")
+    },
+    {
+      id: 7,
+      title: "مرد زمزمه کننده",
+      image: require("../../assets/img/Proposed/The Whisper Man.png")
     }
   ]
 };
-// فقط ۶ تای اول رو برای بخش "پیشنهادی" برمی‌گردونه —
-// بعداً اگه محصول بیشتر اضافه شد، این getter جداست و منطق نمایش رو کنترل می‌کنه
+
 const getters = {
   allProducts: state => state.products,
+
   proposedProducts: state => state.products.slice(0, 6),
 
   productById: state => id =>

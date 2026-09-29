@@ -18,7 +18,6 @@ import { mapGetters } from "vuex";
 
 export default {
   computed: {
-    // به‌جای this.$store.getters['Product/proposedProducts']، مستقیم می‌نویسیم this.proposedProducts
     ...mapGetters("Product", ["proposedProducts"])
   }
 };
@@ -26,33 +25,9 @@ export default {
 
 <style scoped>
 .countiner {
-  margin: 4%;
-  height: 510px;
-  background-color: var(--surface);
+
+  margin: 90% 4% 4% 4%;
+
 }
-.product--header {
-  margin: 5px;
-  border-bottom: 2px solid var(--line);
-  width: 90%;
-  height: 30px;
-  padding: 20px;
-  text-align: center;
-  font-size: 22px;
-}
-.product--visite ul {
-  list-style: none;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  padding: 16px;
-  margin: 0;
-}
-.product--visite li img {
-  width: 140px;
-  height: 140px;
-  object-fit: cover;
-  border-radius: 8px;
-  border: 1px solid var(--line);
-}
+
 </style>
