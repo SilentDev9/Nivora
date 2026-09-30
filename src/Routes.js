@@ -23,6 +23,10 @@ export const Routes = [
     component: Register
   },
   {
+    path:"/ProductViwe/drama/:id",
+    component:ProductViwe
+  },
+  {
     path:"/ProductViwe/:id",
     component:ProductViwe
   },

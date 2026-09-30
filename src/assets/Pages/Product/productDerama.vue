@@ -1,294 +1,291 @@
 <template>
-  <div class="countiner">
-    <div class="product--header"><span>پیشنهادی</span></div>
-    <div class="product">
-    <div class="product--visite">
-      <button class="slider--btn slider-btn-right" v-on:click="scrollRight"><</button>
-      <ul>
-        <li v-for="productderama in deramaProduct" :key="productderama.id">
-          <router-link :to="'/ProductViwe/' + productderama.id">
-            <img :src="productderama.image" :alt="productderama.title" />
-          </router-link>
-        </li>
-      </ul>
-       <button class="slider--btn slider-btn-left" v-on:click="scrollLeft">></button>
+  <section class="drama-section countiner">
+    <div class="section-heading">
+      <div>
+        <span class="eyebrow">NIVORA COLLECTION</span>
+        <h2>فیلم‌های درام</h2>
+        <p>داستان‌هایی که بعد از تمام شدنشان هم یک گوشه‌ی ذهنتان می‌مانند.</p>
+      </div>
+      <span class="movie-count">{{ deramaProduct.length }} فیلم</span>
     </div>
+
+    <div class="drama-slider">
+      <button
+        class="slider--btn slider-btn-right"
+        type="button"
+        aria-label="فیلم‌های قبلی"
+        @click="scrollRight"
+      >
+        <i class="fa fa-chevron-right"></i>
+      </button>
+
+      <div ref="movieSlider" class="movie-scroll">
+        <ul>
+          <li v-for="movie in deramaProduct" :key="movie.id">
+            <router-link :to="'/ProductViwe/drama/' + movie.id" class="movie-card">
+              <div class="poster-wrap">
+                <img :src="movie.image" :alt="movie.title" />
+                <span class="score"><i class="fa fa-star"></i> {{ movie.score }}</span>
+                <span class="play-icon"><i class="fa fa-play"></i></span>
+              </div>
+              <div class="movie-info">
+                <h3>{{ movie.title }}</h3>
+                <span><i class="fa fa-clock-o"></i> {{ movie.time }}</span>
+              </div>
+            </router-link>
+          </li>
+        </ul>
+      </div>
+
+      <button
+        class="slider--btn slider-btn-left"
+        type="button"
+        aria-label="فیلم‌های بعدی"
+        @click="scrollLeft"
+      >
+        <i class="fa fa-chevron-left"></i>
+      </button>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
+
 export default {
-  data() {
-    return {
-      deramaProduct: [
-        {
-          id: 1,
-          title: "جدایی نادر از سیمین",
-          image: require("../../img/Nivora_Posters_20/01 - جدایی نادر از سیمین.png"),
-          time: "2:03:00",
-          score: "8.3",
-          cast: "پیمان معادی، لیلا حاتمی، ساره بیات",
-          direction: "اصغر فرهادی"
-        },
-
-        {
-          id: 2,
-          title: "درباره الی",
-          image: require("../../img/Nivora_Posters_20/02 - درباره الی.png"),
-          time: "1:59:00",
-          score: "7.9",
-          cast: "ترانه علیدوستی، گلشیفته فراهانی، شهاب حسینی",
-          direction: "اصغر فرهادی"
-        },
-
-        {
-          id: 3,
-          title: "فروشنده",
-          image: require("../../img/Nivora_Posters_20/03 - فروشنده.png"),
-          time: "2:04:00",
-          score: "7.7",
-          cast: "شهاب حسینی، ترانه علیدوستی، بابک کریمی",
-          direction: "اصغر فرهادی"
-        },
-
-        {
-          id: 4,
-          title: "زندگی و یک روز",
-          image: require("../../img/Nivora_Posters_20/04 - زندگی و یک روز.png"),
-          time: "2:15:00",
-          score: "8.1",
-          cast: "پیمان معادی، نوید محمدزاده، پریناز ایزدیار",
-          direction: "سعید روستایی"
-        },
-
-        {
-          id: 5,
-          title: "آواز گنجشک‌ها",
-          image: require("../../img/Nivora_Posters_20/05 - آواز گنجشک ها.png"),
-          time: "1:36:00",
-          score: "7.9",
-          cast: "رضا ناجی، مریم اکبری، کامران دهقان",
-          direction: "مجید مجیدی"
-        },
-
-        {
-          id: 6,
-          title: "بچه‌های آسمان",
-          image: require("../../img/Nivora_Posters_20/06 - بچه های آسمان.png"),
-          time: "1:29:00",
-          score: "8.2",
-          cast: "رضا ناجی، امیر فرخ هاشمیان، بهاره صدیقی",
-          direction: "مجید مجیدی"
-        },
-
-        {
-          id: 7,
-          title: "باران",
-          image: require("../../img/Nivora_Posters_20/07 - باران.png"),
-          time: "1:34:00",
-          score: "7.7",
-          cast: "حسین عابدینی، زهرا بهرامی، حسین رحیمی",
-          direction: "مجید مجیدی"
-        },
-
-        {
-          id: 8,
-          title: "گاو",
-          image: require("../../img/Nivora_Posters_20/08 - گاو.png"),
-          time: "1:44:00",
-          score: "7.8",
-          cast: "عزت‌الله انتظامی، مهین شهابی، علی نصیریان",
-          direction: "داریوش مهرجویی"
-        },
-
-        {
-          id: 9,
-          title: "دایره",
-          image: require("../../img/Nivora_Posters_20/09 - دایره.png"),
-          time: "1:30:00",
-          score: "7.4",
-          cast: "نرگس مامی‌زاده، مریم پالویان، مژگان فراه‌مرزی",
-          direction: "جعفر پناهی"
-        },
-
-        {
-          id: 10,
-          title: "شهر زیبا",
-          image: require("../../img/Nivora_Posters_20/10 - شهرزیبا.png"),
-          time: "1:38:00",
-          score: "7.6",
-          cast: "فرامرز قریبیان، ترانه علیدوستی، بابک انصاری",
-          direction: "اصغر فرهادی"
-        },
-
-        {
-          id: 11,
-          title: "بید مجنون",
-          image: require("../../img/Nivora_Posters_20/11 - بید مجنون.png"),
-          time: "1:36:00",
-          score: "7.3",
-          cast: "پرویز پرستویی، رویا تیموریان، صغرا اویسی",
-          direction: "مجید مجیدی"
-        },
-
-        {
-          id: 12,
-          title: "آژانس شیشه‌ای",
-          image: require("../../img/Nivora_Posters_20/12 - آژانس شیشه ای.png"),
-          time: "1:54:00",
-          score: "7.7",
-          cast: "پرویز پرستویی، رضا کیانیان، حبیب رضایی",
-          direction: "ابراهیم حاتمی‌کیا"
-        },
-
-        {
-          id: 13,
-          title: "بانوی اردیبهشت",
-          image: require("../../img/Nivora_Posters_20/13 - بانوی اردیبهشت.png"),
-          time: "1:28:00",
-          score: "6.4",
-          cast: "گلاب آدینه، مینو فرشچی، نیره فراهانی",
-          direction: "رخشان بنی‌اعتماد"
-        },
-
-        {
-          id: 14,
-          title: "ماهی‌ها عاشق می‌شوند",
-          image: require("../../img/Nivora_Posters_20/14 - ماهی ها عاشق میشوند.png"),
-          time: "1:36:00",
-          score: "6.9",
-          cast: "رضا کیانیان، رویا نونهالی، گلشیفته فراهانی",
-          direction: "علی رفیعی"
-        },
-
-        {
-          id: 15,
-          title: "کشتزارهای سفید",
-          image: require("../../img/Nivora_Posters_20/15 - کشتزارهای سفید.png"),
-          time: "1:32:00",
-          score: "7.6",
-          cast: "حسن پورشیرازی، یونس غزالی، محمد ربانی‌پور",
-          direction: "محمد رسول‌اف"
-        },
-
-        {
-          id: 16,
-          title: "۲۰ انگشت",
-          image: require("../../img/Nivora_Posters_20/16 - ۲۰ آگوست.png"),
-          time: "1:12:00",
-          score: "6.7",
-          cast: "منیژه حکمت، بیژن دانشمند",
-          direction: "مانیا اکبری"
-        },
-
-        {
-          id: 17,
-          title: "هفت روز",
-          image: require("../../img/Nivora_Posters_20/17 - هفت روز.png"),
-          time: "1:53:00",
-          score: "6.4",
-          cast: "ویشکا آسایش، مجید بختیاری، سینا پرهام",
-          direction: "علی صمدی احدی"
-        },
-
-        {
-          id: 18,
-          title: "آیه‌های زمینی",
-          image: require("../../img/Nivora_Posters_20/18 - آیه های زمینی.png"),
-          time: "1:17:00",
-          score: "7.2",
-          cast: "بهرام ارک، صدف عسگری، اردشیر کاظمی",
-          direction: "علی عسگری، علیرضا خاتمی"
-        },
-
-        {
-          id: 19,
-          title: "برندگان",
-          image: require("../../img/Nivora_Posters_20/19 - برندگان.png"),
-          time: "1:25:00",
-          score: "6.9",
-          cast: "رضا ناجی، یحیی، لیلا",
-          direction: "حسن ناظر"
-        },
-
-        {
-          id: 20,
-          title: "دانه انجیر معابد",
-          image: require("../../img/Nivora_Posters_20/20 - دانه انجیر معابد.png"),
-          time: "2:47:00",
-          score: "7.5",
-          cast: "سهیلا گلستانی، میثاق زارع، ستاره ملکی",
-          direction: "محمد رسول‌اف"
-        }
-      ]
-    };
+  computed: {
+    ...mapGetters("Productderama", ["deramaProduct"])
   },
-  methods:{
-    scrollRight(){
-      this.$refs.movieSlider.scrollby({
-        left:-500,
-        behavior:'smooth'
-      })
+  methods: {
+    scrollRight() {
+      this.$refs.movieSlider.scrollBy({
+        left: 520,
+        behavior: "smooth"
+      });
     },
-     screenLeft(){
-      this.$refs.movieSlider.scrollby({
-        left:500,
-        behavior:'smooth'
-      })
+    scrollLeft() {
+      this.$refs.movieSlider.scrollBy({
+        left: -520,
+        behavior: "smooth"
+      });
     }
   }
 };
 </script>
 
-
 <style scoped>
-.product{
+.drama-section {
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(145deg, var(--surface), rgba(229, 52, 44, 0.045));
+}
 
+.section-heading {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+  direction: rtl;
+  margin-bottom: 22px;
+}
+
+.eyebrow {
+  color: var(--accent);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+
+.section-heading h2 {
+  margin: 2px 0 3px;
+  font-size: clamp(1.35rem, 3vw, 1.9rem);
+}
+
+.section-heading p {
+  margin: 0;
+  color: var(--dim);
+  font-size: 13px;
+}
+
+.movie-count {
+  flex: 0 0 auto;
+  padding: 7px 12px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  color: var(--dim);
+  font-size: 12px;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.drama-slider {
+  position: relative;
+}
+
+.movie-scroll {
+  direction: ltr;
   overflow-x: auto;
   overflow-y: hidden;
-  direction: rtl;
-position: relative;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  padding: 5px 42px 10px;
 }
-.product--visite ul{
+
+.movie-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.movie-scroll ul {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 20px;
+  flex-wrap: nowrap;
+  gap: 18px;
   width: max-content;
   margin: 0;
   padding: 0;
+  direction: ltr;
+}
 
+.movie-scroll li {
+  width: 165px;
+  flex: 0 0 165px;
 }
-.product--visite li{
-  flex: 0 0 auto;
-  width: 140px;
-}
-.product--visite li img{
+
+.movie-card {
   display: block;
-  height: 250px;
-  object-fit: cover;
-  border-radius: 12px;
+  color: var(--text);
+  direction: rtl;
 }
-.slider--btn{
+
+.poster-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 2 / 3;
+  border-radius: 15px;
+  background: #111;
+  border: 1px solid var(--line);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+
+.poster-wrap::after {
+  content: "";
   position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.62), transparent 45%);
+  opacity: .7;
+  pointer-events: none;
+}
+
+.poster-wrap img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+.movie-card:hover .poster-wrap {
+  transform: translateY(-7px);
+  border-color: rgba(229, 52, 44, .65);
+  box-shadow: 0 18px 36px rgba(0,0,0,.32);
+}
+
+.score {
+  position: absolute;
+  z-index: 2;
+  top: 9px;
+  right: 9px;
+  padding: 4px 7px;
+  border-radius: 8px;
+  background: rgba(0,0,0,.72);
+  color: #fff;
+  font-size: 11px;
+  direction: ltr;
+}
+
+.score i {
+  color: #ffc107;
+}
+
+.play-icon {
+  position: absolute;
+  z-index: 2;
+  left: 50%;
   top: 50%;
-  transform: translateY(-50%);
-  z-index: 10;
-  width: 42px;
-  height: 70px;
-  border: none;
-  border-radius: 12px;
-  background-color: rgba(20, 20, 24, 0.85);
-  color: white;
-  font-size: 38px;
-  line-height: 1;
-  cursor: pointer;
+  width: 46px;
+  height: 46px;
   display: flex;
   align-items: center;
-  transition: 0.50;
+  justify-content: center;
+  transform: translate(-50%, -50%) scale(.8);
+  border: 1px solid rgba(255,255,255,.4);
+  border-radius: 50%;
+  background: rgba(229,52,44,.9);
+  color: #fff;
+  opacity: 0;
+  transition: .25s ease;
 }
-.slider-btn-left{
-  left: 0;
+
+.movie-card:hover .play-icon {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.movie-info {
+  direction: rtl;
+  padding: 9px 2px 0;
+}
+
+.movie-info h3 {
+  overflow: hidden;
+  margin: 0 0 3px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+
+.movie-info span {
+  color: var(--dim);
+  font-size: 11px;
+}
+
+.slider--btn {
+  position: absolute;
+  z-index: 5;
+  top: 42%;
+  width: 42px;
+  height: 58px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: rgba(20, 20, 24, .9);
+  color: #fff;
+  font-size: 20px;
+  box-shadow: 0 8px 25px rgba(0,0,0,.25);
+  transition: .2s ease;
+}
+
+.slider--btn:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  transform: translateY(-50%) scale(1.05);
+}
+
+.slider-btn-right { right: 5px; }
+.slider-btn-left { left: 5px; }
+
+@media (max-width: 700px) {
+  .section-heading { align-items: center; }
+  .section-heading p { display: none; }
+  .movie-scroll { padding-inline: 34px; }
+  .movie-scroll li { width: 145px; flex-basis: 145px; }
+  .slider--btn { width: 34px; height: 50px; font-size: 16px; }
+}
+
+@media (max-width: 420px) {
+  .movie-scroll { padding-inline: 28px; }
+  .movie-scroll li { width: 132px; flex-basis: 132px; }
+  .movie-scroll ul { gap: 12px; }
 }
 </style>
