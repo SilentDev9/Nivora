@@ -7,18 +7,19 @@
       <div class="countiner">
         <form>
           <div class="sucsses--form">
-            <div
-              class="success"
+            <i
+              class="fa fa-lightbulb-o"
               :class="{
                 'success--active': (User.Email || '').endsWith('@gmail.com')
               }"
-            ></div>
-            <div
-              class="success"
+            ></i>
+
+            <i
+              class="fa fa-lightbulb-o"
               :class="{
-                'success--active': (User.Password.length > 7)
+                'success--active': User.Password.length > 7
               }"
-            ></div>
+            ></i>
           </div>
           <div><h1>Login</h1></div>
           <div>
@@ -32,14 +33,18 @@
               v-model="User.Email"
             />
           </div>
-          <br/>
+          <br />
           <div class="div--password">
             <label
               class="lable--password "
               :class="{ lableActive: showLablePassword }"
               >Password</label
             >
-            <input type="password" v-on:click="lableActivePasswoed" />
+            <input
+              type="password"
+              v-on:click="lableActivePasswoed"
+              v-model="User.Password"
+            />
             <i
               class="fa fa-eye"
               :class="{ showPassword: activShowPassword }"
@@ -47,8 +52,10 @@
             ></i>
           </div>
           <br />
-          <router-link to="">
-            <button type="submit" v-on:click="checkingLogin">submit</button>
+          <router-link to="/Dashboard">
+            <button type="submit" v-on:click="checkingLogin">
+              <span class="text--submit">Submit</span>
+            </button>
           </router-link>
           <div>
             <router-link to="/ForgetPasswoed">
@@ -105,6 +112,7 @@ export default {
         }, 3000);
         return;
       }
+
       this.$store.commit("User/SET_USER", {
         Email: this.User.Email
       });
@@ -134,19 +142,17 @@ export default {
   font-size: clamp(1.6rem, 5vw, 2.2rem);
 }
 .success--active {
-  background-color: green;
+  color: green;
 }
-.success {
-  width: 45%;
-  height: 100%;
-  border-radius: 10px;
-  border: 2px solid var(--dim);
-}
+
 .sucsses--form {
   width: 20%;
   height: 20px;
   display: flex;
   justify-content: space-around;
+}
+.sucsses--form {
+  font-size: 25px;
 }
 form {
   width: 100%;
@@ -208,18 +214,19 @@ button[type="submit"] {
   transition: all 0.2s ease;
   position: relative;
 }
+.text--submit {
+  z-index: 100;
+  font-weight: 800;
+}
 button[type="submit"]::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    bottom right,
-    rgba(229, 53, 44, 0.358),
-    var(--surface)
-  );
+  background: linear-gradient(40deg, rgba(229, 53, 44, 0.358), var(--surface));
   opacity: 0;
-  transition: all 0.5s ease;
+  transition: all 0.8s ease;
   border-radius: 10px;
+  z-index: 1;
 }
 button[type="submit"]:hover::before {
   opacity: 1;

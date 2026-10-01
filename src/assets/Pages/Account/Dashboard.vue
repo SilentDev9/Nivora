@@ -1,96 +1,176 @@
 <template>
-  <div>
-    <header>
-      <div class="header--dashbord">
-        <div><i class="fa fa-user-circle"></i></div>
-        <div><i class="fa fa-shopping-cart"></i></div>
+  <Transition>
+    <div class="contuiner">
+      <div>
+        <header>
+          <div><i class="fa fa-bars"></i></div>
+          <div>
+            <button
+              class="theme-chenge"
+              :class="{ light: isLight }"
+              @click="toggleTheme"
+            >
+              <span class="theme">{{ sunOrmoon }}</span>
+            </button>
+            <i class="fa fa-bell-o"></i>
+          </div>
+        </header>
+        <div class="user--welcome">
+          <div class="user--imge"></div>
+          <span class="text--welcom">خوش امدی . {{ nameUser }}</span>
+          <Transition name="text-fade" mode="out-in">
+            <span :key="currentText" class="text--chenge">{{
+              texts[currentText]
+            }}</span>
+          </Transition>
+        </div>
+        <br />
+        <div class="user--visited">
+          <ul>
+            <li><span>علاقعه مندی ها</span></li>
+            <li><span>فیلم های دیده شده</span></li>
+            <li><span>سریال های دیده شده</span></li>
+          </ul>
+        </div>
       </div>
-      <br />
+    </div>
+    <!-- <div class="panel--hember">
 
-      <ul>
-        <li>تایم تماشا : {{ userVisited.timeViewing }}</li>
-        <li>ویدیو : {{ userVisited.video }}</li>
-        <li>ذخیره شده : {{ userVisited.save }}</li>
-        <li>پسندیده : {{ userVisited.good }}</li>
-      </ul>
-
-      <div class="last--visit">
-        <div class="img--visit"></div>
-      </div>
-    </header>
-    <main></main>
-  </div>
+</div> -->
+  </Transition>
 </template>
 
 <script>
 export default {
   data() {
     return {
-      userVisited: {
-        timeViewing: 0,
-        save: 0,
-        good: 0,
-        video: 0
-      }
+      sunOrmoon: "☾",
+      isLight: false,
+      nameUser: "محمد امین",
+      texts: [
+        "امروز داستان جدید در انتظار توست ...",
+        "فیلم ها فقط سرگرمی نیستند .  آن ها پنچره ای به دنیای دیگرند",
+        "گاهی بهترین سفر . از روی صفحه شروع میشود",
+        "هر فیلم پنچره ای به دنیای دیگر است"
+      ],
+      currentText: 0
     };
   },
-  Component: {
-    User() {
-      return this.$store.getters["User/user"];
+  methods: {
+    toggleTheme() {
+      if (this.isLight == false) {
+        this.isLight = !this.isLight;
+        this.sunOrmoon = "☀";
+        document.documentElement.setAttribute(
+          "data-theme",
+          this.isLight ? "light" : "dark"
+        );
+        return;
+      }
+      if (this.isLight == true) {
+        this.isLight = !this.isLight;
+        this.sunOrmoon = "☾";
+      }
+      document.documentElement.setAttribute(
+        "data-theme",
+        this.isLight ? "light" : "dark"
+      );
     }
+  },
+  mounted() {
+    setInterval(() => {
+      this.currentText = (this.currentText + 1) % this.texts.length;
+    }, 7000);
   }
 };
 </script>
 
 <style scoped>
-header {
-  width: min(1100px, calc(100% - 32px));
-  margin: 30px auto;
-  border: 2px solid var(--accent);
-  border-radius: 24px;
+.contuiner {
+  background-color: var(--surface);
+  height: 100vh;
 }
-.header--dashbord {
-  background-color: var(--bg);
-  color: var(--text);
-  border: 2px solid var(--accent);
-  box-shadow: 0 10px 60px rgba(229,52,44,.18);
-  border-radius: 24px;
-  margin: 14px;
+header {
   display: flex;
   justify-content: space-between;
-  padding: 20px;
+  padding: 30px;
+  align-items: center;
 }
-.header--dashbord i {
-  position: static;
-  font-size: 2.2rem;
+.theme {
+  background-color: transparent;
   color: var(--text);
+  font-size: 2.2em;
 }
-header ul {
+header i {
+  font-size: 2em;
+}
+button {
+  background-color: transparent;
+  border: none;
+  margin-right: 20px;
+}
+.user--welcome {
+  background-image: url("../../img/ad5c36ed-639b-43ed-8e5a-a56dcdc579f5.png");
+  background-position: 0px -7px;
+  background-size: cover;
+  height: 150px;
+  margin: 0 3%;
+  border-radius: 20px;
+  text-align: right;
+  padding: 10px;
   display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 8px;
-  padding: 0 16px;
+  align-items: flex-end;
+  flex-direction: column;
+  padding: 15px;
+  border: 2px solid var(--accent);
 }
-li {
-  display: inline-block;
-  font-size: .95em;
+.user--welcome span {
+  color: white;
+  display: block;
   direction: rtl;
-  padding: 10px 14px;
-  font-weight: 800;
-  color: var(--text);
+  background: linear-gradient(145deg, var(--line), var(--help));
+  border-radius: 50px;
+  padding: 1px 4px;
 }
-.last--visit {
-  background-color: var(--text);
-  min-height: 100px;
-  margin: 20px;
-  border-radius: 8px;
+.text--welcom {
+  font-weight: 900;
+  font-size: 1.1em;
 }
-@media (max-width: 500px) {
-  header { width: calc(100% - 16px); margin: 18px auto; }
-  .header--dashbord { margin: 8px; padding: 14px; }
-  header ul { padding: 0 8px; }
-  li { font-size: .85em; padding: 8px 10px; }
-  .last--visit { margin: 12px; }
+.text--chenge {
+  font-size: 0.8em;
+  font-weight: 600;
+}
+.user--imge {
+  width: 20%;
+  height: 50px;
+  background-size: cover;
+  border-radius: 50px;
+  margin: 5px;
+}
+.text-fade-enter-active,
+.text-fade-leave-active {
+  transition: opacity 1s ease, transform 1s ease;
+}
+.text-fade-enter-from {
+  opacity: 0;
+  transform: translateY(10px);
+}
+.text-fade-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.user--visited ul {
+  display: flex;
+  padding: 0px;
+  justify-content: space-around;
+}
+.user--visited li {
+  background-color: var(--line);
+  border: 2px solid var(--dim);
+  border-radius: 20px;
+  width: 30%;
+  height: 100px;
+  display: inline-block;
 }
 </style>

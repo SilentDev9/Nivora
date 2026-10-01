@@ -5,6 +5,21 @@
     </div>
     <div class="countiner">
       <form>
+        <div class="sucsses--form">
+          <i
+            class="fa fa-lightbulb-o"
+            :class="{
+              'success--active': (User.Email || '').endsWith('@gmail.com')
+            }"
+          ></i>
+
+          <i
+            class="fa fa-lightbulb-o"
+            :class="{
+              'success--active': User.Password.length > 7
+            }"
+          ></i>
+        </div>
         <h1>ساخت اکانت</h1>
 
         <div>
@@ -155,4 +170,3 @@ export default {
   }
 };
 </script>
-
