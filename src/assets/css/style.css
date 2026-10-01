@@ -17,8 +17,8 @@ html {
   --dim: #9a9aa5;
   --accent: #e5342c;
   --line: #26262e;
-  --help: #f6f4f1;
-  --helpText: #000000;
+  --help: #360000;
+  --helpText: #fffdfd;
 }
 
 html[data-theme="light"] {
@@ -28,7 +28,7 @@ html[data-theme="light"] {
   --dim: #71717a;
   --accent: #d92c24;
   --line: #e3e0da;
-  --help: #0a0a0d;
+   --help: #360000;
   --helpText: #eee;
 }
 
@@ -79,17 +79,16 @@ li {
 }
 
 .help--website {
-  width: min(420px, calc(100% - 32px));
   min-height: 50px;
   background-color: var(--help);
   position: fixed;
   margin: 16px;
-  color: var(--helpText);
+  color: var(--text);
   direction: rtl;
   font-size: 15px;
   padding: 10px 14px;
   border-radius: 10px;
-  border: 2px solid var(--accent);
+  border: 3px solid var(--line);
   top: -200px;
   right: 0;
   z-index: 2000;
@@ -100,83 +99,7 @@ li {
   top: 0;
 }
 
-.countiner {
-  width: min(1200px, calc(100% - 32px));
-  margin: 32px auto;
-  padding: 28px;
-  background-color: var(--surface);
-  border: 2px solid var(--line);
-  border-radius: 28px;
-}
 
-.product--header {
-  width: 100%;
-  margin: 0 0 18px;
-  padding: 12px 8px;
-  border-bottom: 2px solid var(--line);
-  text-align: center;
-  font-size: clamp(1.15rem, 2vw, 1.5rem);
-}
-
-.product--visite ul {
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
-  gap: 18px;
-  margin: 0;
-  padding: 8px 0;
-}
-
-.product--visite li {
-  min-width: 0;
-}
-
-.product--visite li img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 2 / 3;
-  height: auto;
-  object-fit: cover;
-  border-radius: 10px;
-  border: 1px solid var(--line);
-}
-
-@media (max-width: 1000px) {
-  .product--visite ul {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 700px) {
-  body {
-    font-size: 15px;
-  }
-
-  .countiner {
-    width: calc(100% - 20px);
-    margin: 20px auto;
-    padding: 16px;
-    border-radius: 18px;
-  }
-
-  .product--visite ul {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px;
-  }
-}
-
-@media (max-width: 420px) {
-  .countiner {
-    width: calc(100% - 12px);
-    margin: 14px auto;
-    padding: 12px;
-  }
-
-  .product--visite ul {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 10px;
-  }
-}
 
 /* Them */
 

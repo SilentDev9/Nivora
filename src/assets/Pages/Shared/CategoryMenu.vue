@@ -86,7 +86,7 @@ export default {
   border-bottom: 1px solid var(--line);
   margin: 0;
   z-index: 1000;
-  box-shadow: 0 4px 24px rgba(139, 0, 0, 0.22);
+  box-shadow: 0 54px 524px  rgba(229, 53, 44, 0.285);
   position: fixed;
   top: 0;
   left: 0;

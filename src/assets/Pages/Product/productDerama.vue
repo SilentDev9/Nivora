@@ -22,10 +22,15 @@
       <div ref="movieSlider" class="movie-scroll">
         <ul>
           <li v-for="movie in deramaProduct" :key="movie.id">
-            <router-link :to="'/ProductViwe/drama/' + movie.id" class="movie-card">
+            <router-link
+              :to="'/ProductViwe/drama/' + movie.id"
+              class="movie-card"
+            >
               <div class="poster-wrap">
                 <img :src="movie.image" :alt="movie.title" />
-                <span class="score"><i class="fa fa-star"></i> {{ movie.score }}</span>
+                <span class="score"
+                  ><i class="fa fa-star"></i> {{ movie.score }}</span
+                >
                 <span class="play-icon"><i class="fa fa-play"></i></span>
               </div>
               <div class="movie-info">
@@ -74,6 +79,12 @@ export default {
 </script>
 
 <style scoped>
+.countiner{
+  margin: 10px;
+  border-radius: 20px;
+  border: 3px solid var(--line);
+  padding: 5px;
+}
 .drama-section {
   position: relative;
   overflow: hidden;
@@ -163,15 +174,16 @@ export default {
   background: #111;
   border: 1px solid var(--line);
   box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
-  transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  transition: transform 0.25s ease, box-shadow 0.25s ease,
+    border-color 0.25s ease;
 }
 
 .poster-wrap::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(0,0,0,.62), transparent 45%);
-  opacity: .7;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.62), transparent 45%);
+  opacity: 0.7;
   pointer-events: none;
 }
 
@@ -184,8 +196,8 @@ export default {
 
 .movie-card:hover .poster-wrap {
   transform: translateY(-7px);
-  border-color: rgba(229, 52, 44, .65);
-  box-shadow: 0 18px 36px rgba(0,0,0,.32);
+  border-color: rgba(229, 52, 44, 0.65);
+  box-shadow: 0 18px 36px rgba(0, 0, 0, 0.32);
 }
 
 .score {
@@ -195,7 +207,7 @@ export default {
   right: 9px;
   padding: 4px 7px;
   border-radius: 8px;
-  background: rgba(0,0,0,.72);
+  background: rgba(0, 0, 0, 0.72);
   color: #fff;
   font-size: 11px;
   direction: ltr;
@@ -215,23 +227,39 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  transform: translate(-50%, -50%) scale(.8);
-  border: 1px solid rgba(255,255,255,.4);
+  transform: translate(-50%, -50%) scale(0.8);
+  border: 1px solid rgba(255, 255, 255, 0.4);
   border-radius: 50%;
-  background: rgba(229,52,44,.9);
+  background: rgba(229, 52, 44, 0.9);
   color: #fff;
   opacity: 0;
-  transition: .25s ease;
+  transition: 0.25s ease;
 }
-
+.movie-card:hover .poster-wrap{
+  border-radius: 20px 20px 0px 0px;
+  border-bottom: none;
+  border-top: none;
+}
 .movie-card:hover .play-icon {
   opacity: 1;
   transform: translate(-50%, -50%) scale(1);
 }
+.movie-card:hover .movie-info {
+  opacity: 1;
+  background: linear-gradient(145deg, var(--surface), rgba(229, 53, 44, 0.212));
+ transform: translateY(-10px);
+ border: 1px solid rgba(229, 52, 44, 0.9);
 
+}
 .movie-info {
   direction: rtl;
   padding: 9px 2px 0;
+  opacity: 0;
+  padding: 10px;
+  transform: translateY(-100px);
+  transition: all 1s;
+  z-index: 0;
+  border-radius: 0px 0px 20px 20px;
 }
 
 .movie-info h3 {
@@ -259,11 +287,11 @@ export default {
   transform: translateY(-50%);
   border: 1px solid var(--line);
   border-radius: 12px;
-  background: rgba(20, 20, 24, .9);
+  background: rgba(20, 20, 24, 0.9);
   color: #fff;
   font-size: 20px;
-  box-shadow: 0 8px 25px rgba(0,0,0,.25);
-  transition: .2s ease;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+  transition: 0.2s ease;
 }
 
 .slider--btn:hover {
@@ -272,20 +300,44 @@ export default {
   transform: translateY(-50%) scale(1.05);
 }
 
-.slider-btn-right { right: 5px; }
-.slider-btn-left { left: 5px; }
+.slider-btn-right {
+  right: 5px;
+}
+.slider-btn-left {
+  left: 5px;
+}
 
 @media (max-width: 700px) {
-  .section-heading { align-items: center; }
-  .section-heading p { display: none; }
-  .movie-scroll { padding-inline: 34px; }
-  .movie-scroll li { width: 145px; flex-basis: 145px; }
-  .slider--btn { width: 34px; height: 50px; font-size: 16px; }
+  .section-heading {
+    align-items: center;
+  }
+  .section-heading p {
+    display: none;
+  }
+  .movie-scroll {
+    padding-inline: 34px;
+  }
+  .movie-scroll li {
+    width: 145px;
+    flex-basis: 145px;
+  }
+  .slider--btn {
+    width: 34px;
+    height: 50px;
+    font-size: 16px;
+  }
 }
 
 @media (max-width: 420px) {
-  .movie-scroll { padding-inline: 28px; }
-  .movie-scroll li { width: 132px; flex-basis: 132px; }
-  .movie-scroll ul { gap: 12px; }
+  .movie-scroll {
+    padding-inline: 28px;
+  }
+  .movie-scroll li {
+    width: 132px;
+    flex-basis: 132px;
+  }
+  .movie-scroll ul {
+    gap: 12px;
+  }
 }
 </style>

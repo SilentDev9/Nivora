@@ -32,6 +32,7 @@ header {
   flex-direction: column;
   justify-content: center;
   margin-bottom: 300px;
+
 }
 .name--visite {
   padding: 50px;
