@@ -27,9 +27,21 @@
         <br />
         <div class="user--visited">
           <ul>
-            <li><span>علاقعه مندی ها</span></li>
-            <li><span>فیلم های دیده شده</span></li>
-            <li><span>سریال های دیده شده</span></li>
+            <li>
+              <span >{{ test }}</span>
+              <span >علاقعه مندی ها</span>
+              <i class="fa fa-heart"></i>
+            </li>
+            <li>
+              <span>{{ test }}</span>
+              <span >فیلم ذخیره شده</span>
+              <i class="fa fa-save"></i>
+            </li>
+            <li>
+              <span >{{ test }}</span>
+              <span >سریال دیده شده</span>
+              <i class="fa fa-television"></i>
+            </li>
           </ul>
         </div>
       </div>
@@ -46,6 +58,7 @@ export default {
     return {
       sunOrmoon: "☾",
       isLight: false,
+      test: 0,
       nameUser: "محمد امین",
       texts: [
         "امروز داستان جدید در انتظار توست ...",
@@ -87,7 +100,7 @@ export default {
 
 <style scoped>
 .contuiner {
-  background-color: var(--surface);
+  background-color: var(--bg);
   height: 100vh;
 }
 header {
@@ -167,10 +180,29 @@ button {
 }
 .user--visited li {
   background-color: var(--line);
-  border: 2px solid var(--dim);
+  border: 3px solid var(--surface);
   border-radius: 20px;
   width: 30%;
   height: 100px;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  align-items: stretch;
+  padding: 20px;
 }
+.user--visited li span {
+  font-size: 0.8em;
+  font-weight: 800;
+}
+.user--visited li i {
+  color: var(--accent);
+ padding: 0px 5px;
+  font-size: 1.3em;
+}
+.user--visited span:first-child{
+position: absolute;
+bottom: 20%;
+}
+
 </style>
