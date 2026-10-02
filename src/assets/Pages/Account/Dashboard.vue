@@ -1,9 +1,40 @@
 <template>
   <Transition>
     <div class="contuiner">
+      <div class="panel--hember" :class="{ 'panel--active': isPanelMobile }">
+        <ul>
+          <li v-on:click="clickdashboard" :class="{ 'menu--activ': dashboard }">
+            <i class="fa fa-home"></i><span>داشبورد</span>
+          </li>
+          <li v-on:click="clickfilme" :class="{ 'menu--activ': filme }">
+            <i class="fa fa-film"></i><span>فیلم ها</span>
+          </li>
+          <li v-on:click="clickserial" :class="{ 'menu--activ': serial }">
+            <i class="fa fa-file-movie-o"></i><span>سریال ها</span>
+          </li>
+          <li v-on:click="clicklicked" :class="{ 'menu--activ': licked }">
+            <i class="fa fa-heart"></i><span>علاقمندی ها</span>
+          </li>
+          <li v-on:click="clickseting" :class="{ 'menu--activ': seting }">
+            <i class="fa fa-gear"></i><span>تنظیمات</span>
+          </li>
+        </ul>
+      </div>
       <div>
         <header>
-          <div><i class="fa fa-bars"></i></div>
+          <div class="buttun--panel">
+            <div>
+              <button
+                :class="{ 'button--Panel--active': isPanelMobile }"
+                v-on:click="openPanelMobile"
+              >
+                <i class="fa fa-bars"></i>
+              </button>
+            </div>
+
+            <div><span>Nivora</span></div>
+          </div>
+
           <div>
             <button
               class="theme-chenge"
@@ -12,7 +43,10 @@
             >
               <span class="theme">{{ sunOrmoon }}</span>
             </button>
-            <i class="fa fa-bell-o"></i>
+            <router-link to="/">
+ <i class="fa fa-home"></i>
+            </router-link>
+
           </div>
         </header>
         <div class="user--welcome">
@@ -28,27 +62,21 @@
         <div class="user--visited">
           <ul>
             <li>
-              <span >{{ test }}</span>
-              <span >علاقعه مندی ها</span>
+              <span>{{ test }}</span> <span>علاقعه مندی ها</span>
               <i class="fa fa-heart"></i>
             </li>
             <li>
-              <span>{{ test }}</span>
-              <span >فیلم ذخیره شده</span>
+              <span>{{ test }}</span> <span>فیلم ذخیره شده</span>
               <i class="fa fa-save"></i>
             </li>
             <li>
-              <span >{{ test }}</span>
-              <span >سریال دیده شده</span>
+              <span>{{ test }}</span> <span>سریال دیده شده</span>
               <i class="fa fa-television"></i>
             </li>
           </ul>
         </div>
       </div>
     </div>
-    <!-- <div class="panel--hember">
-
-</div> -->
   </Transition>
 </template>
 
@@ -66,7 +94,13 @@ export default {
         "گاهی بهترین سفر . از روی صفحه شروع میشود",
         "هر فیلم پنچره ای به دنیای دیگر است"
       ],
-      currentText: 0
+      currentText: 0,
+      isPanelMobile: false,
+      dashboard: true,
+      filme: false,
+      serial: false,
+      licked: false,
+      seting: false
     };
   },
   methods: {
@@ -88,6 +122,44 @@ export default {
         "data-theme",
         this.isLight ? "light" : "dark"
       );
+    },
+    openPanelMobile() {
+      this.isPanelMobile = !this.isPanelMobile;
+    },
+    clickdashboard() {
+      this.dashboard = true;
+      this.filme = false;
+      this.serial = false;
+      this.licked = false;
+      this.seting = false;
+    },
+    clickfilme() {
+      this.dashboard = false;
+      this.filme = true;
+      this.serial = false;
+      this.licked = false;
+      this.seting = false;
+    },
+    clickserial() {
+      this.dashboard = false;
+      this.filme = false;
+      this.serial = true;
+      this.licked = false;
+      this.seting = false;
+    },
+    clicklicked() {
+      this.dashboard = false;
+      this.filme = false;
+      this.serial = false;
+      this.licked = true;
+      this.seting = false;
+    },
+    clickseting() {
+      this.dashboard = false;
+      this.filme = false;
+      this.serial = false;
+      this.licked = false;
+      this.seting = true;
     }
   },
   mounted() {
@@ -116,6 +188,7 @@ header {
 }
 header i {
   font-size: 2em;
+  transition: all 0.5s;
 }
 button {
   background-color: transparent;
@@ -189,7 +262,8 @@ button {
   justify-content: center;
   position: relative;
   align-items: stretch;
-  padding: 20px;
+  padding: 20px 0px;
+  z-index: 0;
 }
 .user--visited li span {
   font-size: 0.8em;
@@ -197,12 +271,91 @@ button {
 }
 .user--visited li i {
   color: var(--accent);
- padding: 0px 5px;
+  padding: 0px 5px;
   font-size: 1.3em;
 }
-.user--visited span:first-child{
-position: absolute;
-bottom: 20%;
+.user--visited span:first-child {
+  position: absolute;
+  bottom: 20%;
+}
+@media (max-width: 400px) {
+  .user--visited li span {
+    font-size: 0.6em;
+    font-weight: 800;
+  }
+  .user--visited li i {
+    color: var(--accent);
+    padding: 0px 5px;
+    font-size: 1em;
+  }
 }
 
+/* panell--mobile */
+
+.panel--hember {
+  width: 40%;
+  height: 100vh;
+  background-image: linear-gradient(100deg, var(--surface), var(--bg));
+  border: 3px solid var(--line);
+  border-radius: 0px 10px 10px 0px;
+  position: absolute;
+  left: -300px;
+  z-index: 100;
+  transition: all ease-in-out 0.8s;
+  padding: 20% 0;
+}
+
+.buttun--panel {
+  z-index: 101;
+  text-align: left;
+  width: 25%;
+  display: flex;
+  align-items: self-end;
+}
+
+.buttun--panel span {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: 1.7em;
+}
+.panel--active {
+  left: 0;
+}
+.button--Panel--active {
+  color: var(--accent);
+  transition: all 0.5s;
+}
+button {
+  color: var(--text);
+}
+
+.panel--hember ul {
+  border-bottom: 1.5px solid var(--line);
+  border-top: 1.5px solid var(--line);
+  display: flex;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: 10px;
+}
+.panel--hember ul li {
+  width: 100%;
+  height: 50px;
+  margin: 10px 0px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-left: 20px;
+  font-weight: 600;
+  font-size: 1em;
+  position: relative;
+  border-radius: 10px;
+}
+.panel--hember ul li span {
+  padding: 30px;
+}
+.menu--activ {
+  position: absolute;
+  background-color: rgb(168, 2, 2);
+  font-weight: 800;
+  transition: all ease-in 0.2s;
+}
 </style>
