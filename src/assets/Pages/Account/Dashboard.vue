@@ -1,23 +1,37 @@
 <template>
   <Transition>
     <div class="contuiner">
+      <router-viwe></router-viwe>
       <div class="panel--hember" :class="{ 'panel--active': isPanelMobile }">
         <ul>
-          <li v-on:click="clickdashboard" :class="{ 'menu--activ': dashboard }">
-            <i class="fa fa-home"></i><span>داشبورد</span>
-          </li>
-          <li v-on:click="clickfilme" :class="{ 'menu--activ': filme }">
-            <i class="fa fa-film"></i><span>فیلم ها</span>
-          </li>
-          <li v-on:click="clickserial" :class="{ 'menu--activ': serial }">
-            <i class="fa fa-file-movie-o"></i><span>سریال ها</span>
-          </li>
-          <li v-on:click="clicklicked" :class="{ 'menu--activ': licked }">
-            <i class="fa fa-heart"></i><span>علاقمندی ها</span>
-          </li>
-          <li v-on:click="clickseting" :class="{ 'menu--activ': seting }">
-            <i class="fa fa-gear"></i><span>تنظیمات</span>
-          </li>
+          <router-link to="">
+            <li
+              v-on:click="clickdashboard"
+              :class="{ 'menu--activ': dashboard }"
+            >
+              <i class="fa fa-home"></i><span>داشبورد</span>
+            </li>
+          </router-link>
+          <router-link to="">
+            <li v-on:click="clickfilme" :class="{ 'menu--activ': filme }">
+              <i class="fa fa-film"></i><span>فیلم ها</span>
+            </li>
+          </router-link >
+          <router-link to="">
+            <li v-on:click="clickserial" :class="{ 'menu--activ': serial }">
+              <i class="fa fa-file-movie-o"></i><span>سریال ها</span>
+            </li>
+          </router-link>
+          <router-link to="">
+            <li v-on:click="clicklicked" :class="{ 'menu--activ': licked }">
+              <i class="fa fa-heart"></i><span>علاقمندی ها</span>
+            </li>
+          </router-link>
+          <router-link to="">
+            <li v-on:click="clickseting" :class="{ 'menu--activ': seting }">
+              <i class="fa fa-gear"></i><span>تنظیمات</span>
+            </li>
+          </router-link>
         </ul>
       </div>
       <div>
@@ -43,10 +57,7 @@
             >
               <span class="theme">{{ sunOrmoon }}</span>
             </button>
-            <router-link to="/">
- <i class="fa fa-home"></i>
-            </router-link>
-
+            <router-link to="/"> <i class="fa fa-home"></i> </router-link>
           </div>
         </header>
         <div class="user--welcome">
@@ -74,6 +85,58 @@
               <i class="fa fa-television"></i>
             </li>
           </ul>
+        </div>
+      </div>
+      <div class="grouping">
+        <div class="grouping--header">
+          <span>دسته بندی</span><i class="fa fa-th-list"></i>
+        </div>
+        <div class="grouping--list">
+          <ul>
+            <li><span>اکشن</span><i class="fa fa-dollar"></i></li>
+            <li><span>درام</span><i class="fa fa-heart-o"></i></li>
+            <li><span>ترسناک</span><i class="fa fa-hand-rock-o"></i></li>
+            <li><span>علمی تخیلی</span><i class="fa fa-reddit-alien"></i></li>
+            <li><span>کمدی</span><i class="fa fa-sign-language"></i></li>
+            <li><span>انیمیشن</span><i class="fa fa-lightbulb-o"></i></li>
+          </ul>
+        </div>
+      </div>
+      <div class="somting--work">
+        <div class="somting--header">
+          <span>فعالیت های اخیر</span><i class="fa fa-odnoklassniki"></i>
+          <div class="somting--list">
+            <ul>
+              <li>
+                <img
+                  src="../../img/Nivora_Posters_20/12 - آژانس شیشه ای.png"
+                  alt="اژانس شیشه ای"
+                />
+                <div>
+                  <span class="somting--namefilm"
+                    >تماشای فیلم {{ "اژانس شیشه ای" }}</span
+                  >
+
+                  <span class="somting--time">دیروز - 22:10</span>
+                </div>
+                <i class="fa fa-ticket"></i>
+              </li>
+              <li>
+                <img
+                  src="../../img/Nivora_Posters_20/05 - آواز گنجشک ها.png"
+                  alt="اژانس شیشه ای"
+                />
+                <div>
+                  <span class="somting--namefilm"
+                    >لایک فیلم {{ "آواز گنجشک ها" }}</span
+                  >
+
+                  <span class="somting--time">چهارشنبه - 5:30</span>
+                </div>
+                <i class="fa fa-heart"></i>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </div>
@@ -171,6 +234,14 @@ export default {
 </script>
 
 <style scoped>
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+span {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+}
 .contuiner {
   background-color: var(--bg);
   height: 100vh;
@@ -249,6 +320,7 @@ button {
 .user--visited ul {
   display: flex;
   padding: 0px;
+  margin: 5px;
   justify-content: space-around;
 }
 .user--visited li {
@@ -293,13 +365,13 @@ button {
 /* panell--mobile */
 
 .panel--hember {
-  width: 40%;
+  width: 45%;
   height: 100vh;
   background-image: linear-gradient(100deg, var(--surface), var(--bg));
   border: 3px solid var(--line);
   border-radius: 0px 10px 10px 0px;
   position: absolute;
-  left: -300px;
+  left: -100%;
   z-index: 100;
   transition: all ease-in-out 0.8s;
   padding: 20% 0;
@@ -336,6 +408,9 @@ button {
   padding: 0;
   margin: 10px;
 }
+a{
+  width: 100%;
+}
 .panel--hember ul li {
   width: 100%;
   height: 50px;
@@ -357,5 +432,95 @@ button {
   background-color: rgb(168, 2, 2);
   font-weight: 800;
   transition: all ease-in 0.2s;
+  color: white;
+}
+.grouping {
+  margin: 5% 3%;
+  border-radius: 20px;
+  border: 3px solid var(--line);
+  background-color: var(--surface);
+  width: 35%;
+  position: absolute;
+  right: 0;
+}
+.grouping--header {
+  display: flex;
+  font-size: 1.2em;
+  justify-content: flex-end;
+  padding: 10%;
+  margin-bottom: -5%;
+  align-items: center;
+}
+.grouping--list ul {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  flex-wrap: wrap;
+  flex-direction: column;
+  align-content: center;
+  padding: 0;
+  padding: 10px;
+}
+.grouping--list li {
+  background-color: var(--line);
+  border: 2px solid var(--bg);
+  width: 100%;
+  display: flex;
+  margin: 4%;
+
+  justify-content: flex-end;
+  border-radius: 1dvb;
+  align-items: center;
+}
+.grouping--header i {
+  color: var(--accent);
+  padding: 0 10px;
+}
+.grouping--list i {
+  margin: 10%;
+  color: var(dim);
+}
+.somting--work {
+  position: absolute;
+  left: 0;
+  background-color: var(--surface);
+  width: 57%;
+  margin: 5% 3%;
+  border-radius: 20px;
+  border: 3px solid var(--line);
+}
+.somting--header {
+  text-align: right;
+  padding: 20px;
+}
+.somting--header i {
+  padding: 0 10px;
+  color: var(--accent);
+}
+.somting--list ul {
+  padding-top: 10%;
+}
+.somting--list li {
+  display: flex;
+  align-items: center;
+  background-color: var(--line);
+  border: 2px solid var(--bg);
+  border-radius: 20px;
+  justify-content: space-between;
+  margin-bottom: 5%;
+}
+.somting--list img {
+  width: 20%;
+  height: 60px;
+  border-radius: 20px;
+}
+.somting--time {
+  font-size: 0.8em;
+  color: var(--dim);
+  display: block;
+}
+.somting--namefilm {
+  font-size: 0.8em;
+  font-weight: 100;
 }
 </style>

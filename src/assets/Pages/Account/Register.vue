@@ -78,8 +78,9 @@
           />
           <i class="fa fa-eye" @click="showConfirm = !showConfirm"></i>
         </div>
-
-        <button type="submit" v-on:click="checkingRegister">ثبت‌ نام</button>
+        <router-link to="/Dashboard">
+          <button type="submit" v-on:click="checkingRegister">ثبت‌ نام</button>
+        </router-link>
 
         <div>
           <router-link to="/Login">
@@ -164,7 +165,13 @@ export default {
         this.showMessage("Password و تکرارش یکی نیستن");
         return;
       } else {
-        this.showMessage("اکانت ساخته شد! (فعلاً فقط نمایشیه)");
+        this.showMessage("اکانت ساخته شد! ");
+        const user = {
+          email: this.Email,
+          username: this.Username,
+          password: this.Password
+        };
+        localStorage.setItem("nivoraUser", JSON.stringify(user));
       }
     }
   }
