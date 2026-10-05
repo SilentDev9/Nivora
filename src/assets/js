@@ -4,10 +4,6 @@ import Register from "./assets/Pages/Account/Register.vue";
 import ForgetPas from "./assets/Pages/Account/ForgetPassword.vue";
 import ProductViwe from "./assets/Pages/Product/ProductViwe.vue";
 import Dashboard from "./assets/Pages/Account/Dashboard.vue";
-import DashboardFilms from "./assets/Pages/Account/DashboardFilms.vue";
-import DashboardSeries from "./assets/Pages/Account/DashboardSeries.vue";
-import DashboardLikes from "./assets/Pages/Account/DashboardLikes.vue";
-import DashboardSettings from "./assets/Pages/Account/DashboardSettings.vue";
 
 export const Routes = [
   {
@@ -37,22 +33,6 @@ export const Routes = [
   {
     path:"/Dashboard",
     component:Dashboard
-  },
-  {
-    path:"/Dashboard/films",
-    component:DashboardFilms
-  },
-  {
-    path:"/Dashboard/series",
-    component:DashboardSeries
-  },
-  {
-    path:"/Dashboard/likes",
-    component:DashboardLikes
-  },
-  {
-    path:"/Dashboard/settings",
-    component:DashboardSettings
   }
 
 ];
