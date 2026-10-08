@@ -1,6 +1,6 @@
 <template>
-  <transition class="animated fadeOutDown">
-    <div>
+
+    <div class="animate__animated  animate__fadeInDown">
       <div class="help--website" :class="{ 'avtive--help': showHelpWebsite }">
         {{ dataHelp }}
       </div>
@@ -70,7 +70,7 @@
         </form>
       </div>
     </div>
-  </transition>
+
 </template>
 
 <script>

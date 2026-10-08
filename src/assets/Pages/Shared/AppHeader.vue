@@ -1,24 +1,54 @@
 <template>
   <div>
- <category--menu></category--menu>
-      <header>
-
-        <span class="name--visite"><span>N</span>ivora</span>
-        <i class="fa btn-info"></i>
-        <form class="form--header">
-          <input type="search" placeholder="دنبال چی می گردی ؟" />
-          <button><i class="fa fa-search"></i></button>
-        </form>
-      </header>
-
+    <category--menu></category--menu>
+    <header>
+      <span class="name--visite"><span>N</span>ivora</span>
+      <i class="fa btn-info"></i>
+      <form class="form--header">
+        <input
+          v-model="searchText"
+          type="search"
+          placeholder="دنبال چی می گردی ؟"
+        />
+        <button><i class="fa fa-search"></i></button>
+      </form>
+      <div v-if="searchText.trim()" class="search--results">
+        <router-link
+          v-for="movie in searchResults"
+          :key="movie.id"
+          :to="'/ProductViwe/drama/' + movie.id"
+          class="search--result"
+        >
+          <img :src="movie.image" :alt="movie.title" />
+        </router-link>
+      </div>
+    </header>
   </div>
 </template>
 
 <script>
 import CategoryMenu from "./CategoryMenu.vue";
+import { mapGetters } from "vuex";
 export default {
+  data() {
+    return {
+      searchText: ""
+    };
+  },
   components: {
     "category--menu": CategoryMenu
+  },
+  computed: {
+    ...mapGetters("Productderama", ["deramaProduct"]),
+    searchResults() {
+      if (!this.searchText.trim()) {
+        return [];
+      }
+      const search = this.searchText.trim().toLowerCase();
+      return this.deramaProduct.filter(movie =>
+        movie.title.toLowerCase().includes(search)
+      );
+    }
   }
 };
 </script>
@@ -32,7 +62,6 @@ header {
   flex-direction: column;
   justify-content: center;
   margin-bottom: 300px;
-
 }
 .name--visite {
   padding: 50px;
@@ -53,7 +82,7 @@ header {
 }
 .form--header input {
   display: block;
-width: 100%;
+  width: 100%;
 
   min-height: 58px;
   padding: 12px 72px 12px 18px;
@@ -66,7 +95,11 @@ width: 100%;
   font-size: clamp(1rem, 2vw, 1.2rem);
 }
 .form--header input:focus {
+  transition: all 0.8s;
   border-color: var(--accent);
+    border: 4px solid var(--accent);
+  border-bottom: none;
+  border-radius: 0px;
 }
 .form--header button {
   font-size: 22px;
@@ -83,6 +116,20 @@ width: 100%;
   padding: 0;
   margin: 0;
   border-radius: 9px;
+}
+
+@media (min-width: 1100px) {
+  header {
+    min-height: 430px;
+    padding-top: 150px;
+    margin-bottom: 260px;
+  }
+  .name--visite {
+    font-size: clamp(3.6rem, 5vw, 5.2rem);
+  }
+  .form--header {
+    width: min(1000px, 72vw);
+  }
 }
 
 @media (max-width: 700px) {
@@ -108,6 +155,24 @@ width: 100%;
     top: 5px;
     left: 5px;
   }
+  .search--results {
+    transition: all ease 2.5s;
+    width: 100%;
+    margin: 1%;
+    height: 200px;
+
+    border: 4px solid var(--accent);
+    background-color: var(--surface);
+    padding: 1%;
+    display: flex;
+    justify-content: center;
+    border-top: none;
+
+  }
+  .search--results img {
+    width: 100%;
+    height: 100%;
+    padding: 1%;
+  }
 }
 </style>
-

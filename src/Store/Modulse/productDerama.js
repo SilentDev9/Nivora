@@ -199,18 +199,37 @@ const state = {
       cast: "سهیلا گلستانی، میثاق زارع، ستاره ملکی",
       direction: "محمد رسول‌اف"
     }
-  ]
+  ],
+  likedMovies: []
 };
 
 const getters = {
   allProducts: state => state.Productderama,
   deramaProduct: state => state.Productderama,
   productById: state => id =>
-    state.Productderama.find(p => String(p.id) === String(id))
+    state.Productderama.find(p => String(p.id) === String(id)),
+  likedProducts: state => {
+    return state.likedMovies
+      .map(id => state.Productderama.find(String(movieId.id) === String(id)))
+      .filter(movie => movie);
+  },
+  isliked:state => id => state.likedMovies.some(movieId => String(movieId)===String(id))
 };
-
+const mutations = {
+  toggleLike(state, movieId) {
+    const isliked = state.likedMovies.some(id => {
+      id === state;
+    });
+    if (isliked) {
+      state.likedMovies = state.likedMovies.filter(id => id !== movieId);
+    } else {
+      state.likedMovies.push(movieId);
+    }
+  }
+};
 export default {
   namespaced: true,
   state,
-  getters
+  getters,
+  mutations
 };

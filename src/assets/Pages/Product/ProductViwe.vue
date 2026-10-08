@@ -21,8 +21,18 @@
         </div>
 
         <div class="info-column">
-          <span class="small-title">معرفی فیلم</span>
-          <h1>{{ product.title }}</h1>
+          <div class="header--viwe">
+            <div>
+              <span class="small-title">معرفی فیلم</span>
+              <h1>{{ product.title }}</h1>
+            </div>
+            <div>
+              <button v-on:click="likeSaveHandler">
+                <i class="fa fa-heart"></i>
+              </button>
+            </div>
+          </div>
+
           <p class="description">
             داستانی تماشایی از سینمای ایران، با فضایی ماندگار و شخصیت‌هایی که تا
             مدت‌ها در ذهن می‌مانند.
@@ -68,6 +78,16 @@
 import { mapGetters } from "vuex";
 
 export default {
+  data() {
+    return {};
+  },
+  methods: {
+    likeSaveHandler() {
+      const moviesId =Number(this.$route.params.id)
+      this.$store.commit("Productderama/toggleLike",moviesId  )
+
+    }
+  },
   computed: {
     ...mapGetters("Product", ["productById"]),
     ...mapGetters("Productderama", { dramaProductById: "productById" }),
@@ -175,7 +195,12 @@ export default {
 }
 
 .info-column {
+  position: relative;
   padding-top: 8px;
+}
+.header--viwe button {
+  font-size: 1.5rem;
+  padding: 20px;
 }
 .small-title {
   color: var(--accent);
@@ -280,6 +305,11 @@ export default {
 }
 .not-found p {
   color: var(--dim);
+}
+.header--viwe {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 @media (max-width: 800px) {

@@ -1,5 +1,8 @@
 <template>
-  <div>
+  <div
+    class="animate__animated animate__fadeInLeft "
+    :class="{ animate__fadeOutRight: exitHandler }"
+  >
     <div class="help--website" :class="{ 'avtive--help': showHelpWebsite }">
       {{ dataHelp }}
     </div>
@@ -84,7 +87,9 @@
 
         <div>
           <router-link to="/Login">
-            <span class="forget--password">قبلاً اکانت داری؟ وارد شو</span>
+            <span v-on:click="clickHandlerExit" class="forget--password"
+              >قبلاً اکانت داری؟ وارد شو</span
+            >
           </router-link>
         </div>
       </form>
@@ -103,7 +108,9 @@ export default {
       showPassword: false,
       showConfirm: false,
       showHelpWebsite: false,
+      exitHandler: false,
       dataHelp: "",
+      routerText: "",
       User: {
         Email: "",
         Username: "",
@@ -144,7 +151,12 @@ export default {
       }
       this.confirmActive = !this.confirmActive;
     },
-
+    // clickHandlerExit() {
+    //   this.exitHandler = !this.exitHandler;
+    //   setTimeout(() => {
+    //     this.routerText = '/Login'
+    //   }, 1000);
+    // },
     checkingRegister() {
       if (this.User.Email == "") {
         this.showMessage("اول Email رو وارد کن");
