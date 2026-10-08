@@ -161,12 +161,19 @@ header {
     margin: 1%;
     height: 200px;
 
+<<<<<<< HEAD
     border: 4px solid var(--accent);
+=======
+    border: 4px solid var(--line);
+>>>>>>> 56377cba1a5988ac25761b24231e6c55fead697f
     background-color: var(--surface);
     padding: 1%;
     display: flex;
     justify-content: center;
+<<<<<<< HEAD
     border-top: none;
+=======
+>>>>>>> 56377cba1a5988ac25761b24231e6c55fead697f
 
   }
   .search--results img {
