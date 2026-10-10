@@ -221,7 +221,6 @@ li {
 .theme-toggle.light:hover {
   box-shadow: 0 5px 16px rgba(0, 0, 0, 0.1);
 }
-<<<<<<< HEAD
 button{
   background-color: transparent;
   border: none;
@@ -274,7 +273,7 @@ input {
     font-size: 15px;
   }
 }
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
@@ -282,25 +281,9 @@ input {
     transition-duration: 0.01ms !important;
     animation-duration: 0.01ms !important;
   }
+} */
+@media (min-width: 1024px) {
+.menuMobile {
+  display: none;
 }
-=======
-
-
-/* Nivora responsive foundation: mobile, tablet and desktop */
-img{max-width:100%;height:auto}
-*,*::before,*::after{box-sizing:border-box}
-main,section,article,header,footer,nav{max-width:100%}
-button,a,input{touch-action:manipulation}
-@media (min-width: 1200px){
-  body{font-size:16px}
-  .category-menu .cuntainer{max-width:1440px;margin:auto;padding-left:34px;padding-right:34px}
-  .category-menu .menuMobile{width:min(420px,32vw)}
 }
-@media (min-width: 768px) and (max-width:1199px){
-  body{font-size:15.5px}
-}
-@media (max-width:767px){
-  body{font-size:15px}
-}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
->>>>>>> 56377cba1a5988ac25761b24231e6c55fead697f

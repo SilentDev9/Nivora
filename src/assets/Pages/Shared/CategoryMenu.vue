@@ -1,5 +1,5 @@
 <template>
-  <nav class="category-menu">
+  <div class="category-menu">
     <div class="cuntainer">
       <div>
         <router-link to="/Login"><i class="fa fa-user-circle"></i></router-link>
@@ -28,11 +28,11 @@
         <li>
           <hr />
           <br />
-          <span v-on:click="OpenGrouping">دسته بندی </span
-          ><i class="fa fa-caret-left " :class="{ routateIcon: clickMenu }">
-          </i>
-          <br />
-          <br />
+          <div class="menuMobile--header">
+            <span v-on:click="OpenGrouping">دسته بندی </span
+            ><i class="fa fa-caret-left " :class="{ routateIcon: clickMenu }">
+            </i>
+          </div>
           <ul class="grouping" :class="{ 'active--grouping ': isGroupingOpne }">
             <li>اکشن</li>
             <li>درام</li>
@@ -41,16 +41,39 @@
             <li>جنایی</li>
           </ul>
         </li>
-
-        <li></li>
+        <br />
+        <hr />
+        <div class="menuMobile--nav">
+          <router-link to="/Login/about"><span>ارتباط با ما</span></router-link>
+          <router-link to="/Login/about"><span>پشتیبانی</span></router-link>
+        </div>
       </ul>
     </div>
-  </nav>
+    <header>
+      <div class="loginAndCheangeTm">
+        <div>
+          <router-link to="/Login"
+            ><button><i class="fa fa-user-circle"></i></button
+          ></router-link>
+        </div>
+        <div>
+          <button
+            class="theme-toggle"
+            :class="{ light: isLight }"
+            @click="toggleTheme"
+          >
+            <span class="moon">☾</span> <span class="sun">☀</span>
+          </button>
+        </div>
+      </div>
+      <div>
+        <div><span class="theNivora">The Nivora WebSite</span></div>
+      </div>
+    </header>
+  </div>
 </template>
 
 <script>
-import { RouterLink } from "vue-router";
-
 export default {
   data() {
     return {
@@ -76,17 +99,16 @@ export default {
         this.isLight ? "light" : "dark"
       );
     }
-  }
+  },
+  components: {}
 };
 </script>
 
 <style scoped>
 .category-menu {
-  background: var(--surface);
-  border-bottom: 1px solid var(--line);
+  background-color: transparent;
   margin: 0;
   z-index: 1000;
-  box-shadow: 0 54px 524px  rgba(229, 53, 44, 0.285);
   position: fixed;
   top: 0;
   left: 0;
@@ -120,13 +142,19 @@ export default {
   height: 100dvh;
   background: var(--surface);
   padding: 90px 20px 30px;
-  overflow-y: auto;
   transition: right 0.3s ease;
   z-index: 1;
   direction: rtl;
   font-size: 1.05rem;
   color: var(--text);
   box-shadow: -10px 0 35px rgba(0, 0, 0, 0.2);
+}
+.menuMobile--header {
+  display: flex;
+  align-items: center;
+}
+.menuMobile--header i {
+  padding: 5px;
 }
 .menu--active {
   right: 0;
@@ -142,6 +170,12 @@ button {
 .menuMobile span {
   display: inline-block;
   padding: 5px;
+  font-weight: 800;
+  font-size: 1.3rem;
+}
+.menuMobile--nav {
+  display: flex;
+  justify-content: space-around;
 }
 li {
   list-style-type: none;
@@ -173,5 +207,47 @@ ul {
 }
 a {
   color: var(--text);
+}
+header {
+  display: none;
+}
+@media (min-width: 1024px) {
+  .cuntainer {
+    display: none;
+  }
+  header {
+    display: flex;
+    background: linear-gradient(
+      145deg,
+      var(--surface),
+      rgba(229, 52, 44, 0.035)
+    );
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--line);
+  }
+  header i {
+    font-size: 2rem;
+    padding: 20px;
+  }
+  .theNivora {
+    color: var(--accent);
+    font-size: 1.7rem;
+    padding: 10px;
+    font-family: Georgia, "Times New Roman", Times, serif;
+    font-weight: 900;
+
+    text-shadow: 1px 1px 1px var(--dim);
+  }
+
+  .loginAndCheangeTm {
+    width: 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+  }
+  .category-menu {
+    position: relative;
+  }
 }
 </style>

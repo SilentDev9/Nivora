@@ -87,7 +87,7 @@
 </template>
 
 <script>
-
+import 'animate.css';
 import DashboardPanel from "../../Shared/DashboardPanel.vue";
 export default {
   data() {

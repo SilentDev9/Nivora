@@ -1,6 +1,7 @@
 <template>
   <div>
     <category--menu></category--menu>
+    <navbar-header></navbar-header>
     <header>
       <span class="name--visite"><span>N</span>ivora</span>
       <i class="fa btn-info"></i>
@@ -27,6 +28,7 @@
 </template>
 
 <script>
+import NavbarHeader from "./NavbarHeader.vue";
 import CategoryMenu from "./CategoryMenu.vue";
 import { mapGetters } from "vuex";
 export default {
@@ -36,7 +38,8 @@ export default {
     };
   },
   components: {
-    "category--menu": CategoryMenu
+    "category--menu": CategoryMenu,
+    "navbar-header": NavbarHeader
   },
   computed: {
     ...mapGetters("Productderama", ["deramaProduct"]),
@@ -97,7 +100,7 @@ header {
 .form--header input:focus {
   transition: all 0.8s;
   border-color: var(--accent);
-    border: 4px solid var(--accent);
+  border: 4px solid var(--accent);
   border-bottom: none;
   border-radius: 0px;
 }
@@ -161,20 +164,12 @@ header {
     margin: 1%;
     height: 200px;
 
-<<<<<<< HEAD
     border: 4px solid var(--accent);
-=======
-    border: 4px solid var(--line);
->>>>>>> 56377cba1a5988ac25761b24231e6c55fead697f
     background-color: var(--surface);
     padding: 1%;
     display: flex;
     justify-content: center;
-<<<<<<< HEAD
     border-top: none;
-=======
->>>>>>> 56377cba1a5988ac25761b24231e6c55fead697f
-
   }
   .search--results img {
     width: 100%;

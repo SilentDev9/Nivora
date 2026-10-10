@@ -1,7 +1,6 @@
 <template>
   <div class="animate__animated animate__fadeIn">
     <div class="contuiner">
-<<<<<<< HEAD
       <dashboard--panel></dashboard--panel>
       <div class="user--welcome">
         <div class="user--imge"></div>
@@ -27,38 +26,6 @@
             <span>{{ test }}</span> <span>سریال دیده شده</span>
             <i class="fa fa-television"></i>
           </li>
-=======
-      <div class="panel--hember" :class="{ 'panel--active': isPanelMobile }">
-        <ul>
-          <router-link to="/Dashboard">
-            <li
-              v-on:click="clickdashboard"
-              :class="{ 'menu--activ': dashboard }"
-            >
-              <i class="fa fa-home"></i><span>داشبورد</span>
-            </li>
-          </router-link>
-          <router-link to="/Dashboard/films">
-            <li v-on:click="clickfilme" :class="{ 'menu--activ': filme }">
-              <i class="fa fa-film"></i><span>فیلم ها</span>
-            </li>
-          </router-link>
-          <router-link to="/Dashboard/series">
-            <li v-on:click="clickserial" :class="{ 'menu--activ': serial }">
-              <i class="fa fa-file-movie-o"></i><span>سریال ها</span>
-            </li>
-          </router-link>
-          <router-link to="/Dashboard/likes">
-            <li v-on:click="clicklicked" :class="{ 'menu--activ': licked }">
-              <i class="fa fa-heart"></i><span>علاقمندی ها</span>
-            </li>
-          </router-link>
-          <router-link to="/Dashboard/settings">
-            <li v-on:click="clickseting" :class="{ 'menu--activ': seting }">
-              <i class="fa fa-gear"></i><span>تنظیمات</span>
-            </li>
-          </router-link>
->>>>>>> 56377cba1a5988ac25761b24231e6c55fead697f
         </ul>
       </div>
 
@@ -169,62 +136,7 @@ export default {
 span {
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
 }
-<<<<<<< HEAD
 
-=======
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px clamp(16px, 4vw, 56px);
-  min-height: 76px;
-  position: relative;
-  z-index: 30;
-}
-header i {
-  font-size: 1.65rem;
-  transition: 0.25s;
-  color: var(--text);
-}
-.buttun--panel {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  width: auto;
-  direction: ltr;
-  z-index: 1001;
-}
-.buttun--panel button {
-  margin: 0;
-  padding: 8px;
-  color: var(--text);
-}
-button{
-  background-color: transparent;
-  border: none;
-}
-.buttun--panel span {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-  font-size: 1.55rem;
-  font-weight: 800;
-  letter-spacing: 0.5px;
-}
-.theme {
-  background: transparent;
-  color: var(--text);
-  font-size: 2rem;
-}
-header > div:last-child {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  direction: ltr;
-}
-header > div:last-child > a {
-  width: auto;
-  color: var(--text);
-}
->>>>>>> 56377cba1a5988ac25761b24231e6c55fead697f
 .user--welcome {
   background-image: url("../../img/ad5c36ed-639b-43ed-8e5a-a56dcdc579f5.png");
   background-position: center;
@@ -384,7 +296,6 @@ header > div:last-child > a {
   width: 24px;
   text-align: center;
   color: var(--accent);
-<<<<<<< HEAD
 }
 .menu--activ i {
   color: #fff !important;
@@ -434,91 +345,29 @@ header > div:last-child > a {
   font-weight: 700;
   padding: 12px 16px;
 }
-=======
-}
-.menu--activ i {
-  color: #fff !important;
-}
-.grouping,
-.somting--work {
-  position: static;
-  width: min(1320px, 94%);
-  margin: 24px auto 0;
-  border-radius: 22px;
-  border: 1px solid var(--line);
-  background: var(--surface);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
-}
-.grouping--header,
-.somting--header {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 10px;
-  padding: 20px 24px;
-  font-size: 1.05rem;
-}
-.grouping--header i,
-.somting--header i {
-  color: var(--accent);
-}
-.grouping--list ul {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 12px;
-  padding: 0 20px 20px;
-  margin: 0;
-}
-.grouping--list li {
-  background: var(--line);
-  border: 1px solid var(--bg);
-  width: 100%;
-  display: flex;
-  margin: 0;
-  justify-content: flex-end;
-  border-radius: 12px;
-  align-items: center;
-  font-size: 0.9rem;
-  font-weight: 700;
-  padding: 12px 16px;
-}
->>>>>>> 56377cba1a5988ac25761b24231e6c55fead697f
 .grouping--list i {
   margin-left: 10px;
   color: var(--accent);
 }
 .somting--list ul {
-<<<<<<< HEAD
   padding: 0;
-=======
-  padding: 0 20px 20px;
->>>>>>> 56377cba1a5988ac25761b24231e6c55fead697f
   margin: 0;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 14px;
-<<<<<<< HEAD
   width: 100%;
 }
 .somting--list {
   width: 100%;
-=======
->>>>>>> 56377cba1a5988ac25761b24231e6c55fead697f
 }
 .somting--list li {
-  display: grid;
-  grid-template-columns: 72px 1fr 25px;
+  display: flex;
   align-items: center;
-<<<<<<< HEAD
-=======
-  gap: 12px;
->>>>>>> 56377cba1a5988ac25761b24231e6c55fead697f
   background: var(--line);
   border: 1px solid var(--bg);
   border-radius: 16px;
   margin: 0;
   min-height: 78px;
-<<<<<<< HEAD
   padding-left: 14px;
   width: 100%;
   justify-content: space-between;
@@ -526,14 +375,6 @@ header > div:last-child > a {
 .somting--list img {
   width: 100%;
   height: 100%;
-=======
-  overflow: hidden;
-  padding-left: 14px;
-}
-.somting--list img {
-  width: 72px;
-  height: 90px;
->>>>>>> 56377cba1a5988ac25761b24231e6c55fead697f
   object-fit: cover;
   border-radius: 12px;
 }
@@ -606,14 +447,7 @@ header > div:last-child > a {
   .grouping--list ul {
     grid-template-columns: 1fr;
   }
-<<<<<<< HEAD
 
-=======
-  .grouping--header,
-  .somting--header {
-    padding: 16px;
-  }
->>>>>>> 56377cba1a5988ac25761b24231e6c55fead697f
   .panel--hember {
     width: 88vw;
   }
