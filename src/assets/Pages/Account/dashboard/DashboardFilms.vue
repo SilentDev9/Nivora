@@ -2,9 +2,7 @@
   <div class="animate__animated  animate__slideInDown">
     <dashboard--panel></dashboard--panel>
     <div class="contuiner">
-      <header>
-       <span>فیلم ها</span> <i class="fa fa-film"></i>
-      </header>
+      <header><span>فیلم ها</span> <i class="fa fa-film"></i></header>
       <div
         class="section--falms"
         v-on:click="openProgressText1"
@@ -87,7 +85,7 @@
 </template>
 
 <script>
-import 'animate.css';
+
 import DashboardPanel from "../../Shared/DashboardPanel.vue";
 export default {
   data() {
@@ -197,7 +195,7 @@ progress::-webkit-progress-value {
   padding: 1%;
   margin: 10px;
   color: var(--text);
-  background-image: linear-gradient(120deg,var(--help),var(--accent));
+  background-image: linear-gradient(120deg, var(--help), var(--accent));
   border: 3px solid var(--line);
 }
 .active--text {

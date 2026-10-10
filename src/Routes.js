@@ -27,36 +27,35 @@ export const Routes = [
     component: Register
   },
   {
-    path:"/ProductViwe/drama/:id",
-    component:ProductViwe
+    path: "/ProductViwe/drama/:id",
+    component: ProductViwe
   },
   {
-    path:"/ProductViwe/:id",
-    component:ProductViwe
+    path: "/ProductViwe/:id",
+    component: ProductViwe
   },
   {
-    path:"/Dashboard",
-    component:Dashboard
+    path: "/Dashboard",
+    component: Dashboard
   },
   {
-    path:"/Dashboard/films",
-    component:DashboardFilms
+    path: "/Dashboard/films",
+    component: DashboardFilms
   },
   {
-    path:"/Dashboard/series",
-    component:DashboardSeries
+    path: "/Dashboard/series",
+    component: DashboardSeries
   },
   {
-    path:"/Dashboard/likes",
-    component:DashboardLikes
+    path: "/Dashboard/likes",
+    component: DashboardLikes
   },
   {
-    path:"/Dashboard/settings",
-    component:DashboardSettings
+    path: "/Dashboard/settings",
+    component: DashboardSettings
   },
   {
-    path:"/Login/about",
-    component:About
+    path: "/Login/about",
+    component: About
   }
-
 ];
