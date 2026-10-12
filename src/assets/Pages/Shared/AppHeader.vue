@@ -5,7 +5,7 @@
     <header>
       <span class="name--visite"><span>N</span>ivora</span>
       <i class="fa btn-info"></i>
-      <form class="form--header">
+      <form class="form--header" @submit.prevent>
         <input
           v-model="searchText"
           type="search"
@@ -64,7 +64,7 @@ header {
   align-items: center;
   flex-direction: column;
   justify-content: center;
-  margin-bottom: 300px;
+  margin-bottom: 20%;
 }
 .name--visite {
   padding: 50px;
@@ -123,9 +123,9 @@ header {
 
 @media (min-width: 1100px) {
   header {
-    min-height: 430px;
-    padding-top: 150px;
-    margin-bottom: 260px;
+    min-height: 360px;
+    padding-top: 110px;
+    margin-bottom: 100px;
   }
   .name--visite {
     font-size: clamp(3.6rem, 5vw, 5.2rem);
@@ -159,22 +159,54 @@ header {
     left: 5px;
   }
   .search--results {
-    transition: all ease 2.5s;
-    width: 100%;
-    margin: 1%;
-    height: 200px;
-
-    border: 4px solid var(--accent);
-    background-color: var(--surface);
-    padding: 1%;
-    display: flex;
-    justify-content: center;
-    border-top: none;
+    width: min(100%, 850px);
+    margin: 0 auto;
+    max-height: 240px;
+    overflow: auto;
+    border: 1px solid var(--line);
+    border-top: 0;
+    border-radius: 0 0 14px 14px;
+    background: var(--surface);
+    padding: 10px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+    gap: 10px;
   }
   .search--results img {
     width: 100%;
-    height: 100%;
-    padding: 1%;
+    height: 125px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+}
+
+.search--results {
+  width: min(850px, 100%);
+  margin-top: 10px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 12px;
+  max-height: 300px;
+  overflow: auto;
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+}
+.search--results img {
+  display: block;
+  width: 100%;
+  height: 145px;
+  object-fit: cover;
+  border-radius: 9px;
+  transition: transform 0.2s ease;
+}
+.search--results a:hover img {
+  transform: translateY(-3px);
+}
+@media (min-width: 1100px) {
+  header {
+    margin-bottom: 100px;
   }
 }
 </style>

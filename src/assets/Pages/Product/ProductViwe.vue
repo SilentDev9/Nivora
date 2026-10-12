@@ -27,8 +27,16 @@
               <h1>{{ product.title }}</h1>
             </div>
             <div>
-              <button v-on:click="likeSaveHandler">
+              <button
+                class="like-button"
+                :class="{ 'is-liked': isCurrentLiked }"
+                type="button"
+                :aria-pressed="String(isCurrentLiked)"
+                :aria-label="isCurrentLiked ? 'حذف از علاقه‌مندی‌ها' : 'افزودن به علاقه‌مندی‌ها'"
+                @click="likeSaveHandler"
+              >
                 <i class="fa fa-heart"></i>
+                <span>{{ isCurrentLiked ? "ذخیره‌شده" : "افزودن به علاقه‌مندی‌ها" }}</span>
               </button>
             </div>
           </div>
@@ -83,12 +91,14 @@ export default {
   },
   methods: {
     likeSaveHandler() {
-      const moviesId =Number(this.$route.params.id)
-      this.$store.commit("Productderama/toggleLike",moviesId  )
-
+      const movieId = Number(this.$route.params.id);
+      this.$store.commit("Productderama/toggleLike", movieId);
     }
   },
   computed: {
+    isCurrentLiked() {
+      return this.$store.getters["Productderama/isliked"](this.$route.params.id);
+    },
     ...mapGetters("Product", ["productById"]),
     ...mapGetters("Productderama", { dramaProductById: "productById" }),
 
@@ -344,4 +354,25 @@ export default {
     display: none;
   }
 }
+
+.like-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 10px 15px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
+  transition: transform .22s ease, color .22s ease, background .22s ease, box-shadow .22s ease;
+}
+.like-button i { font-size: 1.25rem; transition: transform .22s ease; }
+.like-button:hover { transform: translateY(-2px); border-color: var(--accent); }
+.like-button.is-liked { color: #fff; background: var(--accent); border-color: var(--accent); box-shadow: 0 8px 24px rgba(229, 52, 44, .25); }
+.like-button.is-liked i { animation: heart-pop .32s ease; }
+@keyframes heart-pop { 0% { transform: scale(1); } 45% { transform: scale(1.45); } 100% { transform: scale(1); } }
+@media (max-width: 640px) { .like-button span { font-size: .82rem; } }
 </style>

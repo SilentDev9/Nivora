@@ -9,6 +9,8 @@ import DashboardSeries from "./assets/Pages/Account/dashboard/DashboardSeries.vu
 import DashboardLikes from "./assets/Pages/Account/dashboard/DashboardLikes.vue";
 import DashboardSettings from "./assets/Pages/Account/dashboard/DashboardSettings.vue";
 import About from "./assets/Pages/NivoraPage/About.vue";
+import Rules from "./assets/Pages/NivoraPage/Rules.vue";
+import Support from "./assets/Pages/NivoraPage/Support.vue";
 export const Routes = [
   {
     path: "/",
@@ -54,8 +56,8 @@ export const Routes = [
     path: "/Dashboard/settings",
     component: DashboardSettings
   },
-  {
-    path: "/Login/about",
-    component: About
-  }
+  { path: "/Login/about", component: About },
+  { path: "/about", component: About },
+  { path: "/rules", component: Rules },
+  { path: "/support", component: Support }
 ];

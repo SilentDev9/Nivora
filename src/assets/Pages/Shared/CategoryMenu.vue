@@ -44,8 +44,9 @@
         <br />
         <hr />
         <div class="menuMobile--nav">
-          <router-link to="/Login/about"><span>ارتباط با ما</span></router-link>
-          <router-link to="/Login/about"><span>پشتیبانی</span></router-link>
+          <router-link to="/about"><span>درباره سازنده</span></router-link>
+          <router-link to="/support"><span>پشتیبانی</span></router-link>
+          <router-link to="/rules"><span>قوانین</span></router-link>
         </div>
       </ul>
     </div>
@@ -74,13 +75,18 @@
 </template>
 
 <script>
+import {
+  getTheme,
+  toggleTheme,
+  applyTheme
+} from "../../../composables/useTheme";
 export default {
   data() {
     return {
       isMenuOpen: false,
       isGroupingOpne: false,
       clickMenu: false,
-      isLight: false
+      isLight: getTheme() === "light"
     };
   },
   methods: {
@@ -92,21 +98,22 @@ export default {
       this.clickMenu = !this.clickMenu;
     },
     toggleTheme() {
-      this.isLight = !this.isLight;
-
-      document.documentElement.setAttribute(
-        "data-theme",
-        this.isLight ? "light" : "dark"
-      );
+      this.isLight = toggleTheme() === "light";
     }
   },
-  components: {}
+  components: {},
+  mounted() {
+    this.isLight = applyTheme(getTheme()) === "light";
+  }
 };
 </script>
 
 <style scoped>
 .category-menu {
-  background-color: transparent;
+  background: linear-gradient(360deg, var(--surface), rgba(229, 52, 44, 0.035));
+
+  border-bottom: 3px solid var(--surface);
+
   margin: 0;
   z-index: 1000;
   position: fixed;
@@ -224,7 +231,7 @@ header {
     );
     justify-content: space-between;
     align-items: center;
-    border-bottom: 2px solid var(--line);
+    border: none;
   }
   header i {
     font-size: 2rem;

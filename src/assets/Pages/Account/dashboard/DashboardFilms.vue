@@ -2,7 +2,9 @@
   <div class="animate__animated  animate__slideInDown">
     <dashboard--panel></dashboard--panel>
     <div class="contuiner">
-      <header><span>فیلم ها</span> <i class="fa fa-film"></i></header>
+      <header>
+       <span>فیلم ها</span> <i class="fa fa-film"></i>
+      </header>
       <div
         class="section--falms"
         v-on:click="openProgressText1"
@@ -10,7 +12,7 @@
       >
         <div class="section--visite">
           <img
-            src="../../../img/Nivora_Posters_20/02 - درباره الی.png"
+            src="../../../img/Nivora_Posters_20/02.png"
             alt=""
           />
           <progress max="100" value="78"></progress>
@@ -29,7 +31,7 @@
       >
         <div class="section--visite">
           <img
-            src="../../../img/Nivora_Posters_20/12 - آژانس شیشه ای.png"
+            src="../../../img/Nivora_Posters_20/12.png"
             alt=""
           />
           <progress max="100" value="100"></progress>
@@ -50,7 +52,7 @@
       >
         <div class="section--visite">
           <img
-            src="../../../img/Nivora_Posters_20/05 - آواز گنجشک ها.png"
+            src="../../../img/Nivora_Posters_20/05.png"
             alt=""
           />
           <progress max="100" value="39"></progress>
@@ -70,7 +72,7 @@
         :class="{ 'active--text': openText4 }"
       >
         <div class="section--visite">
-          <img src="../../../img/Nivora_Posters_20/19 - برندگان.png" alt="" />
+          <img src="../../../img/Nivora_Posters_20/19.png" alt="" />
           <progress max="100" value="63"></progress>
 
           <div><span>78%</span></div>
@@ -85,7 +87,7 @@
 </template>
 
 <script>
-
+import "../../../css/animate.min.css";
 import DashboardPanel from "../../Shared/DashboardPanel.vue";
 export default {
   data() {
@@ -195,7 +197,7 @@ progress::-webkit-progress-value {
   padding: 1%;
   margin: 10px;
   color: var(--text);
-  background-image: linear-gradient(120deg, var(--help), var(--accent));
+  background-image: linear-gradient(120deg,var(--help),var(--accent));
   border: 3px solid var(--line);
 }
 .active--text {

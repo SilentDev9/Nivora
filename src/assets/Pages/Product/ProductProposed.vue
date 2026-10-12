@@ -34,6 +34,7 @@ export default {
   background: linear-gradient(145deg, var(--surface), rgba(229, 52, 44, 0.045));
   border: 2px solid var(--line);
   border-radius: 28px;
+  margin-top: 20%;
 }
 
 .product--header {
@@ -61,8 +62,8 @@ export default {
 .product--visite li {
   min-width: 0;
 }
-.text--propsed{
-color: var(--accent);
+.text--propsed {
+  color: var(--accent);
 }
 .product--visite li img {
   display: block;

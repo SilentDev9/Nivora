@@ -208,25 +208,42 @@ const getters = {
   deramaProduct: state => state.Productderama,
   productById: state => id =>
     state.Productderama.find(p => String(p.id) === String(id)),
-  likedProducts: state => {
-    return state.likedMovies
-      .map(id => state.Productderama.find(String(movieId.id) === String(id)))
-      .filter(movie => movie);
-  },
-  isliked:state => id => state.likedMovies.some(movieId => String(movieId)===String(id))
+  likedProducts: state =>
+    state.likedMovies
+      .map(id =>
+        state.Productderama.find(movie => String(movie.id) === String(id))
+      )
+      .filter(Boolean),
+  isliked: state => id =>
+    state.likedMovies.some(movieId => String(movieId) === String(id))
 };
 const mutations = {
   toggleLike(state, movieId) {
-    const isliked = state.likedMovies.some(id => {
-      id === state;
-    });
-    if (isliked) {
-      state.likedMovies = state.likedMovies.filter(id => id !== movieId);
+    const normalizedId = Number(movieId);
+    const isLiked = state.likedMovies.some(id => Number(id) === normalizedId);
+    if (isLiked) {
+      state.likedMovies = state.likedMovies.filter(
+        id => Number(id) !== normalizedId
+      );
     } else {
-      state.likedMovies.push(movieId);
+      state.likedMovies.push(normalizedId);
     }
+    localStorage.setItem(
+      "nivora-liked-movies",
+      JSON.stringify(state.likedMovies)
+    );
   }
 };
+
+// Restore the user's watchlist after refresh.
+try {
+  const savedLikes = JSON.parse(
+    localStorage.getItem("nivora-liked-movies") || "[]"
+  );
+  if (Array.isArray(savedLikes)) state.likedMovies = savedLikes.map(Number);
+} catch (error) {
+  state.likedMovies = [];
+}
 export default {
   namespaced: true,
   state,

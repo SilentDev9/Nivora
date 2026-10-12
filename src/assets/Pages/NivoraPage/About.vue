@@ -6,9 +6,7 @@
         <router-link to="/" class="back-link"
           ><i class="fa fa-arrow-right"></i> بازگشت به صفحه اصلی</router-link
         >
-        <span class="detail-badge"
-          >NIVORA • {{ isDrama ? "DRAMA" : "MOVIE" }}</span
-        >
+        <span class="detail-badge">NIVORA • CREATOR</span>
       </div>
       <header>
         <h1>Nivora</h1>
@@ -21,8 +19,37 @@
         </div>
       </header>
       <div class="relationship">
+        <section class="about-intro">
+          <span class="eyebrow">ABOUT THE CREATOR</span>
+          <h2>سلام، من محمد امین بحرینی‌ام.</h2>
+          <p>
+            دانش‌آموز هنرستان و توسعه‌دهنده‌ی وب در مسیر یادگیری؛ Nivora یکی از
+            پروژه‌های شخصی من برای تمرین Vue، طراحی رابط کاربری و ساخت تجربه‌ای
+            بهتر برای علاقه‌مندان سینماست.
+          </p>
+        </section>
         <div class="relationship--header">
-          <span>ارتباط با ما</span> <i class="fa fa-users"></i>
+          <span>مهارت‌ها و مسیر یادگیری</span> <i class="fa fa-code"></i>
+        </div>
+        <div class="skills-grid">
+          <div>
+            <strong>HTML & CSS</strong
+            ><span>ساختار صفحات و طراحی واکنش‌گرا</span>
+          </div>
+          <div>
+            <strong>JavaScript</strong
+            ><span>در حال توسعه مهارت در منطق و تعاملات</span>
+          </div>
+          <div>
+            <strong>Vue.js</strong
+            ><span>کامپوننت‌ها، Router و Vuex در پروژه Nivora</span>
+          </div>
+          <div>
+            <strong>GitHub</strong><span>انتشار و معرفی پروژه‌های شخصی</span>
+          </div>
+        </div>
+        <div class="relationship--header">
+          <span>پروژه‌ها و ارتباط</span> <i class="fa fa-users"></i>
         </div>
         <div class="relationship--list">
           <ul>
@@ -34,7 +61,15 @@
               <i class="fa fa-github"></i
               ><a href="https://silentdev9.github.io/">github</a>
             </li>
-            <li><i class="fa fa-linkedin-square"></i><a href="#">linkedin</a></li>
+            <li>
+              <i class="fa fa-code"></i
+              ><a
+                href="https://silentdev9.github.io/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >نمونه‌کارها</a
+              >
+            </li>
           </ul>
           <br />
         </div>
@@ -52,9 +87,12 @@ export default {
     };
   },
   mounted() {
-    setInterval(() => {
+    this.textTimer = setInterval(() => {
       this.currentText = (this.currentText + 1) % this.texts.length;
     }, 3000);
+  },
+  beforeDestroy() {
+    clearInterval(this.textTimer);
   }
 };
 </script>
@@ -186,5 +224,58 @@ header h1 {
   font-size: 0.7rem;
   font-weight: 800;
   letter-spacing: 1.5px;
+}
+
+.about-intro {
+  width: min(900px, 92%);
+  margin: 0 auto 28px;
+  padding: clamp(22px, 4vw, 42px);
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  background: linear-gradient(135deg, var(--surface), rgba(229, 52, 44, 0.08));
+}
+.eyebrow {
+  color: var(--accent);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 2px;
+}
+.about-intro h2 {
+  font-size: clamp(1.5rem, 3vw, 2.3rem);
+  margin: 12px 0;
+}
+.about-intro p {
+  max-width: 780px;
+  color: var(--dim);
+  line-height: 2;
+}
+.skills-grid {
+  width: min(900px, 92%);
+  margin: 20px auto 35px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+.skills-grid div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 20px;
+  background: var(--bg);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+}
+.skills-grid strong {
+  color: var(--text);
+}
+.skills-grid span {
+  color: var(--dim);
+  line-height: 1.8;
+  font-size: 0.9rem;
+}
+@media (max-width: 600px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

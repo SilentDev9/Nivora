@@ -10,24 +10,22 @@
 
       <div class="site-footer__column">
         <h3>دسترسی سریع</h3>
-        <a href="#">فیلم‌ها</a> <a href="#">سریال‌ها</a>
-        <a href="#">علاقمندی‌ها</a>
+        <router-link to="/">فیلم‌ها</router-link> <router-link to="/">سریال‌ها</router-link>
+        <router-link to="/Dashboard/likes">علاقه‌مندی‌ها</router-link>
       </div>
 
       <div class="site-footer__column">
         <h3>نیورا</h3>
-        <router-link to="/Login/about">درباره ما</router-link>
-        <a href="#">قوانین</a> <a href="#">پشتیبانی</a>
+        <router-link to="/about">درباره سازنده</router-link>
+        <router-link to="/rules">قوانین</router-link> <router-link to="/support">پشتیبانی</router-link>
       </div>
 
       <div class="site-footer__social">
         <h3>ما را دنبال کن</h3>
         <div>
-          <a href="#" aria-label="Telegram"><i class="fa fa-telegram"></i></a>
-          <a href="#" aria-label="GitHub"><i class="fa fa-github"></i></a>
-          <a href="#" aria-label="YouTube"
-            ><i class="fa fa-youtube-play"></i
-          ></a>
+          <a href="https://t.me/AminVeyro" target="_blank" rel="noopener noreferrer" aria-label="Telegram"><i class="fa fa-telegram"></i></a>
+          <a href="https://silentdev9.github.io/" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa fa-github"></i></a>
+          <a href="https://github.com/silentdev9" target="_blank" rel="noopener noreferrer" aria-label="GitHub projects"><i class="fa fa-code"></i></a>
         </div>
       </div>
     </div>
@@ -45,8 +43,6 @@ export default {};
 
 <style scoped>
 .site-footer {
-  width: min(1200px, calc(100% - 32px));
-  margin: 48px auto 24px;
   padding: 34px 34px 18px;
   border: 1px solid var(--line);
   border-radius: 28px;
@@ -124,17 +120,23 @@ export default {};
   color: var(--dim);
   font-size: 0.72rem;
 }
-@media (max-width: 850px) {
+@media (min-width: 850px) {
   .site-footer__main {
     grid-template-columns: 1.5fr 1fr 1fr;
   }
   .site-footer__social {
     grid-column: 1 / -1;
   }
+  .site-footer__column a{
+    font-size: 1rem;
+  .site-footer__column h3{
+    font-size: 1.2rem;
+  }
+
+}
 }
 @media (max-width: 560px) {
   .site-footer {
-    width: calc(100% - 20px);
     margin-top: 32px;
     padding: 24px 18px 16px;
     border-radius: 20px;

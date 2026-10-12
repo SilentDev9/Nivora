@@ -1,11 +1,11 @@
 <template>
-
+  <div>
+    <div class="help--website" :class="{ 'avtive--help': showHelpWebsite }">
+      {{ dataHelp }}
+    </div>
     <div class="animate__animated  animate__fadeInDown">
-      <div class="help--website" :class="{ 'avtive--help': showHelpWebsite }">
-        {{ dataHelp }}
-      </div>
       <div class="countiner">
-        <form>
+        <form @submit.prevent="checkingLogin">
           <div class="sucsses--form">
             <i
               class="fa fa-lightbulb-o"
@@ -52,11 +52,9 @@
             ></i>
           </div>
           <br />
-          <router-link to="/Dashboard">
-            <button type="submit" v-on:click="checkingLogin">
-              <span class="text--submit">Submit</span>
-            </button>
-          </router-link>
+          <button v-on:click="checkingLogin" type="submit">
+            <span class="text--submit">ورود</span>
+          </button>
           <div>
             <router-link to="/ForgetPasswoed">
               <span class="forget--password"
@@ -70,7 +68,7 @@
         </form>
       </div>
     </div>
-
+  </div>
 </template>
 
 <script>
@@ -81,10 +79,7 @@ export default {
       showLablePassword: false,
       showHelpWebsite: false,
       dataHelp: "",
-      User: {
-        Email: "",
-        Password: ""
-      }
+      User: { Email: "", Password: "" }
     };
   },
   methods: {
@@ -95,27 +90,51 @@ export default {
       this.showLablePassword = !this.showLablePassword;
     },
     activShowPassword() {},
+    showMessage(message) {
+      this.dataHelp = message;
+      this.showHelpWebsite = true;
+      setTimeout(() => {
+        this.showHelpWebsite = false;
+      }, 3500);
+    },
     checkingLogin() {
-      if (this.User.Email == "") {
-        this.showHelpWebsite = !this.showHelpWebsite;
-        this.dataHelp = " اوه توی قسمت اول Email خودتو بزن";
-        setTimeout(() => {
-          this.showHelpWebsite = !this.showHelpWebsite;
-        }, 3000);
+      const email = this.User.Email.trim().toLowerCase();
+      const password = this.User.Password;
+      if (email == "") {
+        this.showMessage("ایمیل را وارد کن .");
         return;
       }
-      if (this.User.Password == "") {
-        this.showHelpWebsite = !this.showHelpWebsite;
-        this.dataHelp = " اوه Password رو یادت رفت کامل کنی";
-        setTimeout(() => {
-          this.showHelpWebsite = !this.showHelpWebsite;
-        }, 3000);
+      if (password == "") {
+        this.showMessage("رمز عبور را وارد کن .");
         return;
       }
-
+      if (!email || !password) {
+        this.showMessage("ایمیل و رمز عبور را کامل وارد کن.");
+        return;
+      }
+      let registeredUser = null;
+      try {
+        registeredUser = JSON.parse(
+          localStorage.getItem("nivoraUser") || "null"
+        );
+      } catch (error) {
+        registeredUser = null;
+      }
+      if (
+        !registeredUser ||
+        registeredUser.email !== email ||
+        registeredUser.password !== password
+      ) {
+        this.showMessage(
+          "حسابی با این اطلاعات پیدا نشد. ابتدا ثبت‌نام کن یا اطلاعات را بررسی کن."
+        );
+        return;
+      }
       this.$store.commit("User/SET_USER", {
-        Email: this.User.Email
+        email: registeredUser.email,
+        username: registeredUser.username
       });
+      this.$router.push("/Dashboard");
     }
   }
 };
@@ -183,11 +202,11 @@ input[type="text"]:focus {
 .lable--username {
   position: absolute;
   right: 12%;
-  transform: translateY(12px);
+  transform: translatex(-22px);
   transition: all ease 0.3s;
 }
 .lableActive {
-  transform: translateY(-20px);
+  transform: translateY(-25px);
   color: var(--accent);
 }
 .div--password {
@@ -240,15 +259,15 @@ button[type="submit"]:hover::before {
 transition {
   transition: all 1s;
 }
-@media (max-width: 500px) {
+@media (max-width: 820px) {
   .countiner {
-    min-height: 500px;
     padding: 24px 14px;
+    margin: 5% 10%;
   }
   input[type="email"],
   input[type="password"],
   input[type="text"] {
-    width: 88%;
+    width: 70%;
   }
   .lable--email,
   .lable--password,
@@ -256,7 +275,10 @@ transition {
     right: 8%;
   }
   .div--password > i {
-    left: 4%;
+    left: 2%;
+  }
+  .sucsses--form {
+    width: 10%;
   }
 }
 </style>

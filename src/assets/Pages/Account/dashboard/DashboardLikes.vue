@@ -7,13 +7,17 @@
         <i class="fa fa-heart"></i>
       </header>
       <div class="sectoin--like">
-        <div v-for="movie in likedProducts" class="sectoin--list">
-          <img
-            :src="movie.image"
-            :alt="movie.title"
-          />
+        <router-link
+          v-for="movie in likedProducts"
+          :key="movie.id"
+          :to="'/ProductViwe/drama/' + movie.id"
+          class="sectoin--list"
+        >
+          <img :src="movie.image" :alt="movie.title" />
           <span>{{ movie.title }}</span>
-        </div>
+          <i class="fa fa-heart" aria-hidden="true"></i>
+        </router-link>
+        <p v-if="!likedProducts.length" class="empty-likes">هنوز فیلمی به علاقه‌مندی‌ها اضافه نکرده‌ای.</p>
       </div>
     </div>
   </div>
@@ -36,7 +40,7 @@ export default {
 .countinear {
   background-size: cover;
   background-repeat: no-repeat;
-  height: 620px;
+  min-height: 300px; height: auto; padding-bottom: 20px;
   margin: 5%;
   border: 5px solid var(--line);
 }
@@ -56,12 +60,14 @@ export default {
 }
 .sectoin--like {
   background-color: var(--bg);
-  height: 500px;
+  min-height: 240px; height: auto; padding: 12px;
   margin: 22px 10px;
   border: 4px solid var(--line);
   border-radius: 40px;
 }
 .sectoin--list {
+  text-decoration: none;
+  color: var(--text);
   width: 100%;
   height: 100px;
   background-color: var(--surface);
@@ -71,7 +77,13 @@ export default {
   justify-content: space-between;
   align-items: center;
   background-color: var(--bg);
+  margin-bottom: 12px;
+  overflow: hidden;
+  transition: transform .2s ease, border-color .2s ease;
 }
+.sectoin--list:hover { transform: translateY(-2px); border-color: #ff3434; }
+.sectoin--list > i { color: var(--accent); padding: 16px; }
+.empty-likes { text-align: center; color: var(--dim); padding: 36px 12px; }
 .sectoin--list img {
   height: 100%;
   border-radius: 35px 0px 0px 35px;

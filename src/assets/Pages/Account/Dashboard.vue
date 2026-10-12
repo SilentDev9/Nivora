@@ -4,7 +4,7 @@
       <dashboard--panel></dashboard--panel>
       <div class="user--welcome">
         <div class="user--imge"></div>
-        <span class="text--welcom">خوش امدی . {{ nameUser }}</span>
+        <span class="text--welcom">خوش آمدی، {{ displayName }}</span>
         <Transition name="text-fade" mode="out-in">
           <span :key="currentText" class="text--chenge">{{
             texts[currentText]
@@ -15,15 +15,15 @@
       <div class="user--visited">
         <ul>
           <li>
-            <span>{{ test }}</span> <span>علاقعه مندی ها</span>
+            <span>{{ likedProducts.length }}</span> <span>علاقه‌مندی‌ها</span>
             <i class="fa fa-heart"></i>
           </li>
           <li>
-            <span>{{ test }}</span> <span>فیلم ذخیره شده</span>
+            <span>{{ likedProducts.length }}</span> <span>فیلم ذخیره‌شده</span>
             <i class="fa fa-save"></i>
           </li>
           <li>
-            <span>{{ test }}</span> <span>سریال دیده شده</span>
+            <span>0</span> <span>سریال دیده‌شده</span>
             <i class="fa fa-television"></i>
           </li>
         </ul>
@@ -45,8 +45,11 @@
         </div>
       </div>
       <div class="somting--work">
-        <div class="somting--header">
+        <div class="heders--srction">
           <span>فعالیت های اخیر</span><i class="fa fa-odnoklassniki"></i>
+        </div>
+
+        <div class="somting--header">
           <div class="somting--list">
             <ul>
               <li>
@@ -91,8 +94,6 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      test: 0,
-      nameUser: "محمد امین",
       texts: [
         "امروز داستان جدید در انتظار توست ...",
         "فیلم ها فقط سرگرمی نیستند .  آن ها پنچره ای به دنیای دیگرند",
@@ -116,8 +117,16 @@ export default {
       this.currentText = (this.currentText + 1) % this.texts.length;
     }, 7000);
   },
-  computed:{
-    ...mapGetters("Productderama",["likedProducts"])
+  computed: {
+    ...mapGetters("Productderama", ["likedProducts"]),
+    displayName() {
+      const user = this.$store.state.User.user;
+      return user && user.username
+        ? user.username
+        : user && user.email
+        ? user.email
+        : "کاربر نیورا";
+    }
   }
 };
 </script>
@@ -264,6 +273,9 @@ span {
   padding: 12px;
   margin: 0;
 }
+.somting--header {
+  padding: 0px;
+}
 .panel--hember ul li {
   width: 100%;
   height: 54px;
@@ -309,21 +321,29 @@ span {
   background: var(--surface);
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
 }
+.grouping,
+.somting--work span {
+  text-align: right;
+}
 .grouping--header,
 .somting--header {
   gap: 10px;
   padding: 20px 24px;
   font-size: 1.05rem;
   text-align: right;
-  padding: 5%;
 }
 .somting--header {
   flex-direction: column;
 }
 .grouping--header i,
-.somting--header i {
+.heders--srction i {
   color: var(--accent);
   padding: 10px;
+}
+.heders--srction {
+  padding: 1px 40px;
+  text-align: right;
+  padding-top: 10px;
 }
 .grouping--list ul {
   display: grid;
@@ -373,8 +393,8 @@ span {
   justify-content: space-between;
 }
 .somting--list img {
-  width: 100%;
-  height: 100%;
+  width: 20%;
+  height: 100px;
   object-fit: cover;
   border-radius: 12px;
 }
@@ -389,6 +409,10 @@ span {
 }
 .somting--list li > i {
   color: var(--accent);
+  padding-right: 20px;
+}
+.grouping--header {
+  padding: 20px;
 }
 @media (min-width: 1000px) {
   .contuiner {
@@ -434,6 +458,9 @@ span {
     width: 62px;
     height: 78px;
   }
+  .grouping--header {
+    padding: 0px;
+  }
 }
 @media (max-width: 420px) {
   .user--welcome {
@@ -450,6 +477,9 @@ span {
 
   .panel--hember {
     width: 88vw;
+  }
+  .grouping--header {
+    padding: 0px;
   }
 }
 </style>

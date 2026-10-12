@@ -3,27 +3,27 @@
     <div class="panel--hember" :class="{ 'panel--active': isPanelMobile }">
       <ul>
         <router-link to="/Dashboard">
-          <li v-on:click="clickdashboard" :class="{ 'menu--activ': dashboard }">
+          <li :class="{ 'menu--activ': $route.path === '/Dashboard' }">
             <i class="fa fa-home"></i><span>داشبورد</span>
           </li>
         </router-link>
         <router-link to="/Dashboard/films">
-          <li v-on:click="clickfilme" :class="{ 'menu--activ': filme }">
+          <li :class="{ 'menu--activ': $route.path === '/Dashboard/films' }">
             <i class="fa fa-film"></i><span>فیلم ها</span>
           </li>
         </router-link>
         <router-link to="/Dashboard/series">
-          <li v-on:click="clickserial" :class="{ 'menu--activ': serial }">
+          <li :class="{ 'menu--activ': $route.path === '/Dashboard/series' }">
             <i class="fa fa-file-movie-o"></i><span>سریال ها</span>
           </li>
         </router-link>
         <router-link to="/Dashboard/likes">
-          <li v-on:click="clicklicked" :class="{ 'menu--activ': licked }">
+          <li :class="{ 'menu--activ': $route.path === '/Dashboard/likes' }">
             <i class="fa fa-heart"></i><span>علاقمندی ها</span>
           </li>
         </router-link>
         <router-link to="/Dashboard/settings">
-          <li v-on:click="clickseting" :class="{ 'menu--activ': seting }">
+          <li :class="{ 'menu--activ': $route.path === '/Dashboard/settings' }">
             <i class="fa fa-gear"></i><span>تنظیمات</span>
           </li>
         </router-link>
@@ -60,77 +60,23 @@
 </template>
 
 <script>
+import { getTheme, toggleTheme } from "../../../composables/useTheme";
 export default {
   data() {
     return {
-      sunOrmoon: "☾",
-      isLight: false,
-      isPanelMobile: false,
-      dashboard: true,
-      filme: false,
-      serial: false,
-      licked: false,
-      seting: false
+      sunOrmoon: getTheme() === "light" ? "☀" : "☾",
+      isLight: getTheme() === "light",
+      isPanelMobile: false
     };
   },
   methods: {
     toggleTheme() {
-      if (this.isLight == false) {
-        this.isLight = !this.isLight;
-        this.sunOrmoon = "☀";
-        document.documentElement.setAttribute(
-          "data-theme",
-          this.isLight ? "light" : "dark"
-        );
-        return;
-      }
-      if (this.isLight == true) {
-        this.isLight = !this.isLight;
-        this.sunOrmoon = "☾";
-      }
-      document.documentElement.setAttribute(
-        "data-theme",
-        this.isLight ? "light" : "dark"
-      );
+      this.isLight = toggleTheme() === "light";
+      this.sunOrmoon = this.isLight ? "☀" : "☾";
     },
     openPanelMobile() {
       this.isPanelMobile = !this.isPanelMobile;
     },
-    clickdashboard() {
-      this.dashboard = true;
-      this.filme = false;
-      this.serial = false;
-      this.licked = false;
-      this.seting = false;
-    },
-    clickfilme() {
-      this.dashboard = false;
-      this.filme = true;
-      this.serial = false;
-      this.licked = false;
-      this.seting = false;
-    },
-    clickserial() {
-      this.dashboard = false;
-      this.filme = false;
-      this.serial = true;
-      this.licked = false;
-      this.seting = false;
-    },
-    clicklicked() {
-      this.dashboard = false;
-      this.filme = false;
-      this.serial = false;
-      this.licked = true;
-      this.seting = false;
-    },
-    clickseting() {
-      this.dashboard = false;
-      this.filme = false;
-      this.serial = false;
-      this.licked = false;
-      this.seting = true;
-    }
   }
 };
 </script>

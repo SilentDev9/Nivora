@@ -86,6 +86,7 @@ export default {
   padding: 5px;
 }
 .drama-section {
+margin: 10%;
   position: relative;
   overflow: hidden;
   background: linear-gradient(145deg, var(--surface), rgba(229, 52, 44, 0.045));
